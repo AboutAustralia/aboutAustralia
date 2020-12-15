@@ -34,7 +34,7 @@ class _BottomNavigationBarControllerState
           HistoryOfAustralia(),
         ],
       ),
-      assetPath: "assets/images/backgrounds/bg-2.png",
+      //assetPath: "assets/images/backgrounds/bg-2.jpg",
       bottomNavigationBar: BottomNavigation(
         setCurrentIndex: setCurrentIndex,
         currentIndex: currentIndex,

@@ -1,5 +1,5 @@
-import 'file:///D:/Desktop/flutterProjects/about_australia/lib/components/google_maps/background_container.dart';
-import 'file:///D:/Desktop/flutterProjects/about_australia/lib/components/google_maps/top_place_box.dart';
+import '../components/google_maps/background_container.dart';
+import '../components/google_maps/top_place_box.dart';
 import 'package:about_australia/views/map_page.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'file:///D:/Desktop/flutterProjects/about_australia/lib/components/google_maps/background_container.dart';
+import 'components/google_maps/background_container.dart';
 import 'package:about_australia/components/bottom_navigation_tabs_controller.dart';
 import 'package:flutter/material.dart';
 
