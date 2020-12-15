@@ -25,6 +25,9 @@ dependencies:
     sdk: flutter
   google_maps_flutter: ^1.0.6
   concentric_transition: ^0.1.1
+  flutter_localizations:
+    sdk: flutter
+  animations: ^1.1.2
 
 
 
@@ -47,6 +50,19 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/ArbFONTS-Montserrat-Arabic-Black.ttf
+        - asset: assets/fonts/ArbFONTS-Montserrat-Arabic-Bold.ttf
+        - asset: assets/fonts/ArbFONTS-Montserrat-Arabic-ExtraBold.ttf
+        - asset: assets/fonts/ArbFONTS-Montserrat-Arabic-ExtraLight.ttf
+        - asset: assets/fonts/ArbFONTS-Montserrat-Arabic-Light.ttf
+        - asset: assets/fonts/ArbFONTS-Montserrat-Arabic-Medium.ttf
+        - asset: assets/fonts/ArbFONTS-Montserrat-Arabic-Regular.ttf
+        - asset: assets/fonts/ArbFONTS-Montserrat-Arabic-SemiBold.ttf
+        - asset: assets/fonts/ArbFONTS-Montserrat-Arabic-Thin.ttf
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -55,7 +71,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/
+   - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
