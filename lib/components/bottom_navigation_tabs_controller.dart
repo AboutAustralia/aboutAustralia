@@ -1,7 +1,9 @@
 import 'package:about_australia/components/bottom_nvaigation_bar.dart';
 import 'package:about_australia/components/google_maps/background_container.dart';
 import 'package:about_australia/components/mapTabViewController.dart';
+import 'package:about_australia/views/about_australia.dart';
 import 'package:about_australia/views/history_of_australia.dart';
+import 'package:about_australia/views/travel_to_australia.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarController extends StatefulWidget {
@@ -29,9 +31,9 @@ class _BottomNavigationBarControllerState
         index: currentIndex,
         children: [
           HistoryOfAustralia(),
-          HistoryOfAustralia(),
+          AboutAustralia(),
           MapTabViewController(),
-          HistoryOfAustralia(),
+          TravelToAustralia(),
         ],
       ),
       //assetPath: "assets/images/backgrounds/bg-2.jpg",
