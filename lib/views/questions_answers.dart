@@ -32,7 +32,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
             floating: false,
             pinned: true,
             // Display a placeholder widget to visualize the shrinking size.
-            // Make the initial height of the SliverAppBar larger than normal.
+            //  Make the initial height of the SliverAppBar larger than normal.
             expandedHeight: 110,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
