@@ -1,6 +1,8 @@
 import 'file:///D:/Desktop/flutterProjects/about_australia/lib/components/google_maps/background_container.dart';
 import 'package:about_australia/components/bottom_navigation_tabs_controller.dart';
+import 'package:about_australia/views/about_australia.dart';
 import 'package:about_australia/views/onboarding.dart';
+import 'package:about_australia/views/travel_to_australia.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:onboarding/onboarding.dart';

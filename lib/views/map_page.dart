@@ -1,10 +1,17 @@
 import 'dart:async';
+import 'dart:typed_data';
+import 'dart:ui';
 
 import 'file:///D:/Desktop/flutterProjects/about_australia/lib/components/google_maps/background_container.dart';
 import 'file:///D:/Desktop/flutterProjects/about_australia/lib/components/google_maps/top_place_box.dart';
+import 'package:about_australia/components/about_australia_card.dart';
+import 'package:about_australia/components/card_model.dart';
+import 'package:about_australia/data.dart';
 import 'package:about_australia/views/list_map.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -12,6 +19,10 @@ class MapPage extends StatefulWidget {
 }
 
 class MapPageState extends State<MapPage> {
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+
   Completer<GoogleMapController> _controller = Completer();
   BitmapDescriptor customIcon;
 
@@ -19,9 +30,28 @@ class MapPageState extends State<MapPage> {
     if (customIcon == null) {
       final ImageConfiguration imageConfiguration =
           createLocalImageConfiguration(context, size: Size.square(48));
-      BitmapDescriptor.fromAssetImage(imageConfiguration, 'assets/fd.png')
+      BitmapDescriptor.fromAssetImage(
+              imageConfiguration, 'assets/images/loc.png')
           .then(_updateBitmap);
     }
+  }
+
+  static Future<Uint8List> getBytesFromAsset(String path, int width) async {
+    ByteData data = await rootBundle.load(path);
+    Codec codec = await instantiateImageCodec(data.buffer.asUint8List(),
+        targetWidth: width);
+    FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ImageByteFormat.png))
+        .buffer
+        .asUint8List();
+  }
+
+  @override
+  void initState() {
+    getBytesFromAsset('assets/images/loca.png', 115).then((onValue) {
+      customIcon = BitmapDescriptor.fromBytes(onValue);
+    });
+    super.initState();
   }
 
   void _updateBitmap(BitmapDescriptor bitmap) {
@@ -35,6 +65,12 @@ class MapPageState extends State<MapPage> {
       Marker(
           markerId: MarkerId('operaHouse'),
           position: LatLng(-33.85651709284762, 151.21539325698433),
+          onTap: () {
+            itemScrollController.scrollTo(
+                index: 6,
+                duration: Duration(seconds: 1),
+                curve: Curves.easeInOutCubic);
+          },
           infoWindow: InfoWindow(
             title: "دار أوبرا سيدني",
           ),
@@ -42,6 +78,12 @@ class MapPageState extends State<MapPage> {
       Marker(
           markerId: MarkerId('operaHouse'),
           position: LatLng(-33.85651709284762, 151.21539325698433),
+          onTap: () {
+            itemScrollController.scrollTo(
+                index: 6,
+                duration: Duration(seconds: 1),
+                curve: Curves.easeInOutCubic);
+          },
           infoWindow: InfoWindow(
             title: "دار أوبرا سيدني",
           ),
@@ -52,7 +94,7 @@ class MapPageState extends State<MapPage> {
   double zoomVal = 5.0;
   @override
   Widget build(BuildContext context) {
-    _createMarkerImageFromAsset(context);
+    // _createMarkerImageFromAsset(context);
     return Expanded(
       child: Stack(
         children: <Widget>[
@@ -69,7 +111,7 @@ class MapPageState extends State<MapPage> {
     return Align(
       alignment: Alignment.topLeft,
       child: IconButton(
-          icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
+          icon: Icon(Icons.zoom_out, color: Colors.red),
           onPressed: () {
             zoomVal = zoomVal - 0.25;
             changeZoomValue(zoomVal);
@@ -81,7 +123,7 @@ class MapPageState extends State<MapPage> {
     return Align(
       alignment: Alignment.topRight,
       child: IconButton(
-          icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
+          icon: Icon(Icons.zoom_in, color: Colors.red),
           onPressed: () {
             zoomVal = zoomVal + 0.5;
             changeZoomValue(zoomVal);
@@ -101,34 +143,40 @@ class MapPageState extends State<MapPage> {
       alignment: Alignment.bottomLeft,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.0),
-        height: 250.0,
-        child: ListView(
+        height: 200.0,
+        child: ScrollablePositionedList.builder(
+          itemCount: mapsCardsInformation.length,
+          itemBuilder: (context, index) {
+            return AboutAustraliaCard(
+              cardInformationModel: mapsCardsInformation[index],
+            );
+          },
           scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TopPlaceBox(
-                image:
-                    "https://ak-d.tripcdn.com/images/10060n000000e4c6nEB47.jpg?proc=source%2Ftrip",
-                lat: -33.85657946005523,
-                long: 151.21523232445094,
-                locationName: "دار أوبرا سيدني",
-                gotoLocation: _gotoLocation,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TopPlaceBox(
-                image:
-                    "https://ak-d.tripcdn.com/images/10060n000000e4c6nEB47.jpg?proc=source%2Ftrip",
-                lat: -33.85657946005523,
-                long: 151.21523232445094,
-                locationName: "دار أوبرا سيدني",
-                gotoLocation: _gotoLocation,
-              ),
-            ),
-          ],
+          itemScrollController: itemScrollController,
+          itemPositionsListener: itemPositionsListener,
         ),
+        // child: ListView(
+        //   scrollDirection: Axis.horizontal,
+        //   children: <Widget>[
+        //     AboutAustraliaCard(
+        //       imageUrl:
+        //           "https://ak-d.tripcdn.com/images/10060n000000e4c6nEB47.jpg?proc=source%2Ftrip",
+        //       title: "دار أوبرا سيدني",
+        //     ),
+        //     // Padding(
+        //     //   padding: const EdgeInsets.all(8.0),
+        //     //   child: TopPlaceBox(
+        //     //     image:
+        //     //         "https://ak-d.tripcdn.com/images/10060n000000e4c6nEB47.jpg?proc=source%2Ftrip",
+        //     //     lat: -33.85657946005523,
+        //     //     long: 151.21523232445094,
+        //     //     locationName: "دار أوبرا سيدني",
+        //     //     gotoLocation: _gotoLocation,
+        //     //   ),
+        //     // ),
+        //
+        //   ],
+        // ),
       ),
     );
   }

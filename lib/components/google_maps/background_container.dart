@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:about_australia/components/bottom_nvaigation_bar.dart';
+import 'package:about_australia/theme/app_typography.dart';
 import 'package:about_australia/views/list_map.dart';
 import 'package:about_australia/views/map_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +15,8 @@ class BackgroundContainer extends StatelessWidget {
       this.linearGradient,
       this.imageUrl,
       this.appBar,
-      this.blurredBackground = false});
+      this.blurredBackground = true,
+      this.includeAboutAustraliaAppbar = false});
   final String assetPath;
   final Widget child;
   final BottomNavigation bottomNavigationBar;
@@ -22,40 +24,52 @@ class BackgroundContainer extends StatelessWidget {
   final String imageUrl;
   final AppBar appBar;
   final bool blurredBackground;
+  final bool includeAboutAustraliaAppbar;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar,
-      bottomNavigationBar: bottomNavigationBar,
-      body: Stack(children: [
-        imageUrl != null || assetPath != null
-            ? Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+      extendBodyBehindAppBar: true,
+      appBar: includeAboutAustraliaAppbar
+          ? AppBar(
+              title: Align(
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: imageUrl != null
-                            ? NetworkImage(imageUrl)
-                            : AssetImage(this.assetPath),
-                        fit: BoxFit.cover,
-                        alignment: Alignment.topCenter)),
-              )
-            : SizedBox(),
-        blurredBackground
-            ? Positioned.fill(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-                  child: Container(
-                    color: Colors.transparent,
-                  ),
+                child: new Text(
+                  "أستراليا",
+                  style: AppTypography.headerMedium,
                 ),
-              )
-            : SizedBox(),
-        linearGradient == null ? SizedBox() : linearGradient,
-        this.child
-      ]),
+              ),
+              backgroundColor: Colors.transparent.withOpacity(0.3),
+              elevation: 0,
+            )
+          : null,
+      bottomNavigationBar: bottomNavigationBar,
+      body: SafeArea(
+        child: Stack(children: [
+          imageUrl != null || assetPath != null
+              ? Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: imageUrl != null
+                              ? NetworkImage(imageUrl)
+                              : AssetImage(assetPath),
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter)),
+                  child: BackdropFilter(
+                      filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                      child: new Container(
+                        decoration: new BoxDecoration(
+                            color: Colors.white.withOpacity(0.0)),
+                      )),
+                )
+              : SizedBox(),
+          linearGradient == null ? SizedBox() : linearGradient,
+          this.child,
+        ]),
+      ),
     );
   }
 }

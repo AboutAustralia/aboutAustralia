@@ -1,16 +1,14 @@
+import 'package:about_australia/components/card_model.dart';
 import 'package:about_australia/theme/app_colors.dart';
 import 'package:about_australia/theme/app_typography.dart';
-import 'package:about_australia/views/image_container_page.dart';
+import 'package:about_australia/views/image_popup_page.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 class AboutAustraliaCard extends StatelessWidget {
-  final String assetPath;
-  final String imageUrl;
-  final String title;
+  final CardInformationModel cardInformationModel;
 
-  const AboutAustraliaCard({Key key, this.assetPath, this.imageUrl, this.title})
-      : super(key: key);
+  const AboutAustraliaCard({this.cardInformationModel});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +19,9 @@ class AboutAustraliaCard extends StatelessWidget {
       ),
       closedColor: Colors.transparent,
       transitionType: ContainerTransitionType.fade,
-      transitionDuration: const Duration(milliseconds: 800),
+      transitionDuration: const Duration(milliseconds: 650),
       openBuilder: (context, action) {
-        return ImAgeContainerPage(
-          imageUrl: imageUrl,
-          assetPath: assetPath,
-        );
+        return ImagePopupPage(cardInformationModel: cardInformationModel);
       },
       closedBuilder: (context, action) {
         return Stack(
@@ -39,37 +34,37 @@ class AboutAustraliaCard extends StatelessWidget {
               child: Stack(
                 children: [
                   Container(
-                      height: 250,
-                      width: 175,
+                      height: 190,
+                      width: 200,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           image: DecorationImage(
-                              image: imageUrl == null
-                                  ? AssetImage(assetPath)
-                                  : NetworkImage(imageUrl),
+                              image: cardInformationModel.imageUrl == null
+                                  ? AssetImage(cardInformationModel.assetPath)
+                                  : NetworkImage(cardInformationModel.imageUrl),
                               fit: BoxFit.cover))),
-                  // Container(
-                  //   height: 260,
-                  //   width: 175,
-                  //   decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(16.0),
-                  //       gradient: LinearGradient(
-                  //           begin: Alignment.topCenter,
-                  //           end: Alignment.bottomCenter,
-                  //           colors: [
-                  //             AppColors.aquaBlue.withOpacity(0.2),
-                  //             Colors.white.withOpacity(0.2),
-                  //           ])),
-                  // ),
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 16.0),
-                      child: Text(
-                        title,
-                        style: AppTypography.bodyNormal
-                            .copyWith(color: Colors.white),
+                    child: Container(
+                      height: 50,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(16),
+                            bottomLeft: Radius.circular(16)),
+                        color: Colors.white.withOpacity(0.8),
+                      ),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 16.0),
+                          child: Text(
+                            cardInformationModel.title,
+                            style: AppTypography.bodyMedium
+                                .copyWith(color: AppColors.neutrals[700]),
+                          ),
+                        ),
                       ),
                     ),
                   ),

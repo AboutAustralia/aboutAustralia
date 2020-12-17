@@ -36,7 +36,6 @@ class _BottomNavigationBarControllerState
           TravelToAustralia(),
         ],
       ),
-      assetPath: "assets/images/backgrounds/bg-2.png",
       bottomNavigationBar: BottomNavigation(
         setCurrentIndex: setCurrentIndex,
         currentIndex: currentIndex,
