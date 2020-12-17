@@ -16,7 +16,7 @@ class ListMap extends StatelessWidget {
             itemBuilder: (context, index) {
               return TravelInformationCard(
                 cardInformationModel: mapsCardsInformation[index],
-                descriptionColor: AppColors.neutrals[700],
+                descriptionColor: AppColors.neutrals[600],
               );
             }),
       ),

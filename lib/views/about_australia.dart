@@ -15,7 +15,7 @@ class AboutAustralia extends StatelessWidget {
       linearGradient: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-          Colors.grey.withOpacity(0.4),
+          Colors.grey.withOpacity(0.8),
           Colors.grey.withOpacity(0.4),
           Colors.white.withOpacity(0.5),
           Colors.grey.withOpacity(0.3),
@@ -31,8 +31,8 @@ class AboutAustralia extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar.createSettings(
-                  currentExtent: 25,
-                  maxExtent: 50,
+                  currentExtent: 49,
+                  maxExtent: 70,
                   child: LayoutBuilder(builder:
                       (BuildContext context, BoxConstraints constraints) {
                     var top = constraints.biggest.height;
@@ -47,11 +47,14 @@ class AboutAustralia extends StatelessWidget {
                         children: [
                           Align(
                             child: Container(
-                              child: Text("عن استراليا",
-                                  style: AppTypography.headerMedium.copyWith(
-                                      fontSize: 24,
-                                      letterSpacing: 2,
-                                      fontWeight: FontWeight.w500)),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10.0),
+                                child: Text("عن استراليا",
+                                    style: AppTypography.headerMedium.copyWith(
+                                        fontSize: 24,
+                                        letterSpacing: 2,
+                                        fontWeight: FontWeight.w500)),
+                              ),
                             ),
                             alignment: Alignment.bottomCenter,
                           ),
