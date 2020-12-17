@@ -4,6 +4,7 @@ import 'package:about_australia/components/mapTabViewController.dart';
 import 'package:about_australia/views/about_australia.dart';
 import 'package:about_australia/views/history_of_australia.dart';
 import 'package:about_australia/views/travel_to_australia.dart';
+import 'package:about_australia/views/questions_answers.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarController extends StatefulWidget {
@@ -24,6 +25,7 @@ class _BottomNavigationBarControllerState
     });
   }
 
+//c
   @override
   Widget build(BuildContext context) {
     return BackgroundContainer(
@@ -34,6 +36,7 @@ class _BottomNavigationBarControllerState
           AboutAustralia(),
           MapTabViewController(),
           TravelToAustralia(),
+          questionsAnswers(),
         ],
       ),
       bottomNavigationBar: BottomNavigation(

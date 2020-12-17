@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'file:///D:/Desktop/flutterProjects/about_australia/lib/components/google_maps/background_container.dart';
-import 'file:///D:/Desktop/flutterProjects/about_australia/lib/components/google_maps/top_place_box.dart';
 import 'package:about_australia/components/about_australia_card.dart';
 import 'package:about_australia/components/card_model.dart';
 import 'package:about_australia/data.dart';
+import '../components/google_maps/background_container.dart';
+import '../components/google_maps/top_place_box.dart';
 import 'package:about_australia/views/list_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

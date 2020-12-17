@@ -53,6 +53,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
             label: "السفر",
             icon: Icon(Icons.airplanemode_active_rounded),
           ),
+          BottomNavigationBarItem(
+            label: "الاسئلة",
+            icon: Icon(Icons.help),
+          ),
         ],
         onTap: (index) {
           widget.setCurrentIndex(index);
