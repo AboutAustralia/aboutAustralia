@@ -184,6 +184,7 @@ class AboutAustralia extends StatelessWidget {
                                           Icon(
                                             Icons.location_city,
                                             color: AppColors.aquaBlue,
+                                            size: 40,
                                           ),
                                           Text("العاصمة",
                                               style: AppTypography.bodyMedium
