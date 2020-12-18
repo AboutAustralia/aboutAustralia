@@ -86,7 +86,7 @@ class _OnBoardingState extends State<OnBoarding> {
               OutlineButton(
                 highlightedBorderColor: Colors.amber,
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>

@@ -24,6 +24,7 @@ class _BottomNavigationBarControllerState
       this.currentIndex = index;
     });
   }
+
 //c
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,6 @@ class _BottomNavigationBarControllerState
           questionsAnswers(),
         ],
       ),
-      //assetPath: "assets/images/backgrounds/bg-2.jpg",
       bottomNavigationBar: BottomNavigation(
         setCurrentIndex: setCurrentIndex,
         currentIndex: currentIndex,

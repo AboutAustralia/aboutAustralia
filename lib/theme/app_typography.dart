@@ -6,11 +6,23 @@ class AppTypography {
   static const headerMedium = TextStyle(fontFamily: "Montserrat", fontSize: 24);
 
   static const bodySmall = TextStyle(
-      fontFamily: "Montserrat", fontSize: 12, fontWeight: FontWeight.w100, height: 1.5);
+      fontFamily: "Montserrat",
+      fontSize: 12,
+      fontWeight: FontWeight.w100,
+      height: 1.5);
   static const bodyNormal = TextStyle(
-      fontFamily: "Montserrat", fontSize: 16, fontWeight: FontWeight.w500, height: 1.5);
+      fontFamily: "Montserrat",
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      height: 24 / 16);
   static const bodyMedium = TextStyle(
-      fontFamily: "Montserrat", fontSize: 14, fontWeight: FontWeight.w500, height: 1.5);
-  static const  answerPreview = TextStyle(
-      fontFamily: "Montserrat", fontSize: 12, fontWeight: FontWeight.w400, height:1.6 );
+    fontFamily: "Montserrat",
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+  static const answerPreview = TextStyle(
+      fontFamily: "Montserrat",
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      height: 1.6);
 }

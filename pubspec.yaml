@@ -45,6 +45,8 @@ dependencies:
 
 
 
+  scrollable_positioned_list: ^0.1.8
+
 
 
 
@@ -56,6 +58,7 @@ dependencies:
   onboarding: ^1.0.5
   flutter_overboard: ^1.1.5
   introduction_screen: ^1.0.9
+
 
 dev_dependencies:
   flutter_test:

@@ -1,44 +1,25 @@
-import '../components/google_maps/background_container.dart';
-import '../components/google_maps/top_place_box.dart';
-import 'package:about_australia/views/map_page.dart';
+import 'package:about_australia/components/travel_information_card.dart';
+import 'package:about_australia/data.dart';
+import 'package:about_australia/theme/app_colors.dart';
+
 import 'package:flutter/material.dart';
 
 class ListMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: TopPlaceBox(
-            image:
-                "https://ak-d.tripcdn.com/images/10060n000000e4c6nEB47.jpg?proc=source%2Ftrip",
-            lat: -33.85657946005523,
-            long: 151.21523232445094,
-            locationName: "دار أوبرا سيدني",
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: TopPlaceBox(
-            image:
-                "https://ak-d.tripcdn.com/images/10060n000000e4c6nEB47.jpg?proc=source%2Ftrip",
-            lat: -33.85657946005523,
-            long: 151.21523232445094,
-            locationName: "دار أوبرا سيدني",
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: TopPlaceBox(
-            image:
-                "https://ak-d.tripcdn.com/images/10060n000000e4c6nEB47.jpg?proc=source%2Ftrip",
-            lat: -33.85657946005523,
-            long: 151.21523232445094,
-            locationName: "دار أوبرا سيدني",
-          ),
-        ),
-      ],
+    return Container(
+      color: Colors.white10,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 24.0, left: 24, top: 32),
+        child: ListView.builder(
+            itemCount: mapsCardsInformation.length,
+            itemBuilder: (context, index) {
+              return TravelInformationCard(
+                cardInformationModel: mapsCardsInformation[index],
+                descriptionColor: AppColors.neutrals[600],
+              );
+            }),
+      ),
     );
   }
 }
