@@ -22,8 +22,7 @@ class TravelToAustralia extends StatelessWidget {
           Colors.white.withOpacity(0.5),
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
       ),
-      imageUrl:
-          "https://images.unsplash.com/photo-1550971264-3f7e4a7bb349?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80",
+      assetPath: "assets/images/backgrounds/travel.jpg",
       child: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
@@ -34,7 +33,6 @@ class TravelToAustralia extends StatelessWidget {
                 pinned: true,
                 flexibleSpace: LayoutBuilder(builder:
                     (BuildContext context, BoxConstraints constraints) {
-                  var top = constraints.biggest.height;
                   return FlexibleSpaceBar.createSettings(
                     currentExtent: 25,
                     maxExtent: 50,
@@ -96,11 +94,11 @@ class TravelToAustralia extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 35.0),
                     child: ListView.builder(
-                        itemCount: aboutAustraliaInformationModel.length,
+                        itemCount: travelCardInformationModel.length,
                         itemBuilder: (context, index) {
                           return TravelInformationCard(
                             cardInformationModel:
-                                aboutAustraliaInformationModel[index],
+                                travelCardInformationModel[index],
                           );
                         }),
                   ),

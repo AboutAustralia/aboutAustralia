@@ -46,7 +46,7 @@ class TravelInformationCard extends StatelessWidget {
                         color: AppColors.darkBlue,
                         borderRadius: BorderRadius.circular(16.0),
                         image: DecorationImage(
-                            image: NetworkImage(cardInformationModel.imageUrl),
+                            image: AssetImage(cardInformationModel.assetPath),
                             fit: BoxFit.cover,
                             alignment: Alignment.center)),
                     child: Column(
