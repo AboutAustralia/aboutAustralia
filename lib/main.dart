@@ -29,6 +29,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: BottomNavigationBarController());
+        home: OnBoarding());
   }
 }

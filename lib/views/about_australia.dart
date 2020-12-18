@@ -1,3 +1,4 @@
+import 'package:about_australia/australia_icons_icons.dart';
 import 'package:about_australia/components/about_australia_card.dart';
 import 'package:about_australia/components/google_maps/background_container.dart';
 import 'package:about_australia/components/travel_information_card.dart';
@@ -125,7 +126,7 @@ class AboutAustralia extends StatelessWidget {
                                       Column(
                                         children: [
                                           Icon(
-                                            Icons.question_answer_outlined,
+                                            Icons.language,
                                             size: 40,
                                             color: AppColors.aquaBlue,
                                           ),
@@ -135,7 +136,7 @@ class AboutAustralia extends StatelessWidget {
                                                       color: AppColors
                                                           .neutrals[500])),
                                           Text(
-                                            "123,141",
+                                            "الإنجليزية",
                                             style: AppTypography.bodyNormal
                                                 .copyWith(
                                                     color: AppColors
@@ -154,11 +155,11 @@ class AboutAustralia extends StatelessWidget {
                                       Column(
                                         children: [
                                           Icon(
-                                            Icons.language,
+                                            AustraliaIcons.canberra,
                                             size: 40,
                                             color: AppColors.aquaBlue,
                                           ),
-                                          Text("اللغة",
+                                          Text("العاصمة",
                                               style: AppTypography.bodyMedium
                                                   .copyWith(
                                                       color: AppColors
