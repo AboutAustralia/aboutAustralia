@@ -41,10 +41,6 @@ dependencies:
   cloud_firestore: ^0.14.4
   flutter_secure_storage: ^3.3.5
   firebase_database: ^4.4.0
-
-
-
-
   scrollable_positioned_list: ^0.1.8
 
 
