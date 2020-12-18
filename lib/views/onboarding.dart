@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:about_australia/components/bottom_navigation_tabs_controller.dart';
 import 'package:about_australia/theme/app_typography.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:about_australia/fireStore_api.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -140,51 +141,67 @@ class _OnBoardingState extends State<OnBoarding> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.only(left: 5, right: 10, top: 10, bottom: 10),
                           child: Container(
                             height: 50,
-                            child: FlatButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          BottomNavigationBarController(
-                                              currentIndex: 0)),
-                                );
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
+
+                            child: Expanded(
+                              flex: 6,
+                              child: FlatButton(
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            BottomNavigationBarController(
+                                                currentIndex: 0)),
+                                  );
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ),
+                                color: Colors.transparent,
+                                child: Text("المتابعة بدون حساب",
+                                    style: AppTypography.bodyMedium
+                                        .copyWith(color: Colors.white)),
                               ),
-                              color: Colors.transparent,
-                              child: Text("المتابعة بدون حساب",
-                                  style: AppTypography.bodyMedium
-                                      .copyWith(color: Colors.white)),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(24.0),
+                          padding: const EdgeInsets.only(left: 10, right: 5, top: 10, bottom: 10),
                           child: Container(
                             height: 50,
-                            child: FlatButton(
-                              onPressed: () {
-                                _GooglesignIn();
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          BottomNavigationBarController(
-                                              currentIndex: 0)),
-                                );
-                              },
-                              color: Colors.grey.withOpacity(0.4),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
+                            child: Expanded(
+                              flex: 4,
+                              child: FlatButton(
+                                onPressed: () {
+                                  _GooglesignIn();
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            BottomNavigationBarController(
+                                                currentIndex: 0)),
+                                  );
+                                },
+                                color: Colors.grey.withOpacity(0.4),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      FontAwesomeIcons.google,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Text("تسجيل دخول",
+                                        style: AppTypography.bodyMedium
+                                            .copyWith(color: Colors.white)),
+                                  ],
+                                ),
                               ),
-                              child: Text("تسجيل دخول",
-                                  style: AppTypography.bodyMedium
-                                      .copyWith(color: Colors.white)),
                             ),
                           ),
                         ),
