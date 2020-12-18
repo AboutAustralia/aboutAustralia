@@ -6,9 +6,10 @@ class FireStoreAPI{
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   
   Future<void> addUser(var displayName, var photoUrl, var userID, var token){
+
     CollectionReference users = firestore.collection('users');
-    users
-        .add({
+    users.document(userID)
+        .set({
       'displayName': displayName,
       'photoUrl': photoUrl,
       'userID': userID,
