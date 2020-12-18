@@ -39,8 +39,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
           selectedIconTheme: IconThemeData(size: 27),
           items: [
             BottomNavigationBarItem(
-              label: 'تاريخ استراليا',
-              icon: Icon(AustraliaIcons.history2),
+              label: "الاسئلة",
+              icon: Icon(AustraliaIcons.conversation),
             ),
             BottomNavigationBarItem(
               label: 'عن استراليا',
@@ -51,12 +51,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
               icon: Icon(AustraliaIcons.australia2),
             ),
             BottomNavigationBarItem(
-              label: "السفر",
-              icon: Icon(AustraliaIcons.airplane),
+              label: 'تاريخ استراليا',
+              icon: Icon(AustraliaIcons.history2),
             ),
             BottomNavigationBarItem(
-              label: "الاسئلة",
-              icon: Icon(AustraliaIcons.conversation),
+              label: "السفر",
+              icon: Icon(AustraliaIcons.airplane),
             ),
           ],
           onTap: (index) {

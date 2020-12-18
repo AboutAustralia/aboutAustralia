@@ -32,11 +32,11 @@ class _BottomNavigationBarControllerState
       child: IndexedStack(
         index: currentIndex,
         children: [
-          HistoryOfAustralia(),
+          questionsAnswers(),
           AboutAustralia(),
           MapTabViewController(),
+          HistoryOfAustralia(),
           TravelToAustralia(),
-          questionsAnswers(),
         ],
       ),
       bottomNavigationBar: BottomNavigation(

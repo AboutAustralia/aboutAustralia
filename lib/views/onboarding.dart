@@ -246,7 +246,9 @@ class _OnBoardingState extends State<OnBoarding> {
                             color: Colors.transparent,
                             child: IconButton(
                               icon: Icon(Icons.navigate_before,
-                                  color: Colors.white),
+                                  color: currentIndex != 0
+                                      ? Colors.white
+                                      : Colors.transparent),
                               iconSize: 40,
                               onPressed: () {
                                 controller.animateToPage(currentIndex - 1,
