@@ -155,17 +155,17 @@ class AboutAustralia extends StatelessWidget {
                                       Column(
                                         children: [
                                           Icon(
-                                            AustraliaIcons.canberra,
-                                            size: 40,
+                                            AustraliaIcons.people,
                                             color: AppColors.aquaBlue,
+                                            size: 40,
                                           ),
-                                          Text("العاصمة",
+                                          Text("تعداد السكان",
                                               style: AppTypography.bodyMedium
                                                   .copyWith(
                                                       color: AppColors
                                                           .neutrals[500])),
                                           Text(
-                                            "5.34",
+                                            "24.99 مليون",
                                             style: AppTypography.bodyNormal
                                                 .copyWith(
                                                     color: AppColors
@@ -182,17 +182,16 @@ class AboutAustralia extends StatelessWidget {
                                       Column(
                                         children: [
                                           Icon(
-                                            Icons.people_outline,
+                                            Icons.location_city,
                                             color: AppColors.aquaBlue,
-                                            size: 40,
                                           ),
-                                          Text("اللغة",
+                                          Text("العاصمة",
                                               style: AppTypography.bodyMedium
                                                   .copyWith(
                                                       color: AppColors
                                                           .neutrals[500])),
                                           Text(
-                                            "الانجليزية",
+                                            "كانبيرا",
                                             style: AppTypography.bodyNormal
                                                 .copyWith(
                                                     color: AppColors

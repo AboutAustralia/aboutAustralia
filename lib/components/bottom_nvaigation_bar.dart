@@ -23,43 +23,46 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
         ],
       ),
-      child: BottomNavigationBar(
-        unselectedItemColor: AppColors.aquaBlue,
-        showSelectedLabels: true,
-        selectedLabelStyle:
-            TextStyle(fontFamily: "Gotham", fontWeight: FontWeight.w300),
-        showUnselectedLabels: false,
-        currentIndex: widget.currentIndex,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColors.darkBlue,
-        selectedItemColor: Colors.white,
-        iconSize: 30,
-        selectedIconTheme: IconThemeData(size: 35),
-        items: [
-          BottomNavigationBarItem(
-            label: 'تاريخ استراليا',
-            icon: Icon(AustraliaIcons.history2),
-          ),
-          BottomNavigationBarItem(
-            label: 'عن استراليا',
-            icon: Icon(AustraliaIcons.flag_black),
-          ),
-          BottomNavigationBarItem(
-            label: "معالم",
-            icon: Icon(AustraliaIcons.australia2),
-          ),
-          BottomNavigationBarItem(
-            label: "السفر",
-            icon: Icon(AustraliaIcons.airplane),
-          ),
-          BottomNavigationBarItem(
-            label: "الاسئلة",
-            icon: Icon(AustraliaIcons.conversation),
-          ),
-        ],
-        onTap: (index) {
-          widget.setCurrentIndex(index);
-        },
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.11,
+        child: BottomNavigationBar(
+          unselectedItemColor: AppColors.aquaBlue,
+          showSelectedLabels: true,
+          selectedLabelStyle:
+              TextStyle(fontFamily: "Gotham", fontWeight: FontWeight.w300),
+          showUnselectedLabels: false,
+          currentIndex: widget.currentIndex,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: AppColors.darkBlue,
+          selectedItemColor: Colors.white,
+          iconSize: 30,
+          selectedIconTheme: IconThemeData(size: 27),
+          items: [
+            BottomNavigationBarItem(
+              label: 'تاريخ استراليا',
+              icon: Icon(AustraliaIcons.history2),
+            ),
+            BottomNavigationBarItem(
+              label: 'عن استراليا',
+              icon: Icon(AustraliaIcons.flag_black),
+            ),
+            BottomNavigationBarItem(
+              label: "معالم",
+              icon: Icon(AustraliaIcons.australia2),
+            ),
+            BottomNavigationBarItem(
+              label: "السفر",
+              icon: Icon(AustraliaIcons.airplane),
+            ),
+            BottomNavigationBarItem(
+              label: "الاسئلة",
+              icon: Icon(AustraliaIcons.conversation),
+            ),
+          ],
+          onTap: (index) {
+            widget.setCurrentIndex(index);
+          },
+        ),
       ),
     );
   }
