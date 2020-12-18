@@ -85,7 +85,7 @@ class AboutAustralia extends StatelessWidget {
           ];
         },
         body: Padding(
-          padding: const EdgeInsets.only(top: 50.0),
+          padding: const EdgeInsets.only(top: 40.0),
           child: Stack(
             children: [
               ListView(

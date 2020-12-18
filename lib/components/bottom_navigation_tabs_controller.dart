@@ -34,9 +34,9 @@ class _BottomNavigationBarControllerState
         children: [
           questionsAnswers(),
           AboutAustralia(),
+          TravelToAustralia(),
           MapTabViewController(),
           HistoryOfAustralia(),
-          TravelToAustralia(),
         ],
       ),
       bottomNavigationBar: BottomNavigation(

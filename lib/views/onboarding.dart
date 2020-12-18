@@ -146,6 +146,7 @@ class _OnBoardingState extends State<OnBoarding> {
                               left: 5, right: 10, top: 10, bottom: 10),
                           child: Container(
                             height: 50,
+
                             child: Expanded(
                               flex: 6,
                               child: FlatButton(
