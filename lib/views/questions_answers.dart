@@ -49,15 +49,6 @@ class _questionsAnswersState extends State<questionsAnswers> {
 
     store_token(token);
     read_token();
-    ref.child('user').child(userid).once().then((DataSnapshot snap) {
-      var data = snap.value;
-      if (data == null) {
-        ref.child('newuser').set(displayname);
-        post_UserData(userid, displayname, photourl);
-      } else {
-        post_UserData(userid, displayname, photourl);
-      }
-    });
 
     return null;
   }
@@ -124,7 +115,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
     });
   }
 
-  showLogin(bool loggedIn, BuildContext context) {
+  showLogin(BuildContext context) {
     read_token();
     return PopupMenuButton<String>(
         onSelected: handleClick,
@@ -177,7 +168,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
         // Add the app bar to the CustomScrollView.
         SliverAppBar(
             snap: false,
-            actions: [showLogin(true, context)],
+            actions: [showLogin(context)],
             title: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -185,12 +176,15 @@ class _questionsAnswersState extends State<questionsAnswers> {
 
                 children: [
                   Center(
-                      child: Text(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 50),
+                        child: Text(
                     "الأسئلة الشائعة",
                     style: AppTypography.headerMedium.copyWith(
-                      fontSize: 20,
+                        fontSize: 20,
                     ),
-                  )),
+                  ),
+                      )),
                 ]),
             backgroundColor: AppColors.darkBlue,
             floating: false,

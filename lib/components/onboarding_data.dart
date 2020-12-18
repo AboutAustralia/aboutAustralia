@@ -1,53 +1,57 @@
 import 'package:flutter/material.dart';
 
-class SliderModel {
+
+class SliderModel{
+
   String imageAssetPath;
   String title;
   String desc;
   Color colour;
 
-  SliderModel({this.imageAssetPath, this.title, this.desc, this.colour});
 
-  void setImageAssetPath(String getImageAssetPath) {
+  SliderModel({this.imageAssetPath,this.title,this.desc, this.colour });
+
+  void setImageAssetPath(String getImageAssetPath){
     imageAssetPath = getImageAssetPath;
   }
 
-  void setTitle(String getTitle) {
+  void setTitle(String getTitle){
     title = getTitle;
   }
 
-  void setDesc(String getDesc) {
+  void setDesc(String getDesc){
     desc = getDesc;
   }
 
-  void setCol(Color getColour) {
+  void setCol(Color getColour){
     colour = getColour;
   }
-
-  String getImageAssetPath() {
+  String getImageAssetPath(){
     return imageAssetPath;
   }
 
-  String getTitle() {
+  String getTitle(){
     return title;
   }
 
-  String getDesc() {
+  String getDesc(){
     return desc;
   }
 
-  Color getColour() {
+  Color getColour(){
     return colour;
   }
+
 }
 
-List<SliderModel> getSlides() {
+
+List<SliderModel> getSlides(){
+
   List<SliderModel> slides = new List<SliderModel>();
   SliderModel sliderModel = new SliderModel();
 
   //1
-  sliderModel.setDesc(
-      "تعرف على تاريخ استراليا و كيف \n أصبحت أحد أهم دول العالم الأول");
+  sliderModel.setDesc("تعرف على تاريخ استراليا و كيف \n أصبحت أحد أهم دول العالم الأول");
   sliderModel.setTitle("تاريخ أستراليا");
   sliderModel.setImageAssetPath("assets/images/map.jpg");
   sliderModel.setCol(Colors.orange[500]);
@@ -73,7 +77,7 @@ List<SliderModel> getSlides() {
 
   sliderModel = new SliderModel();
   //4
-  sliderModel.setDesc("إجراءات السفر و نصائح عامة عند الذهاب إلى أستراليا");
+  sliderModel.setDesc("إجراءات السفر و نصائح عامة \n عند الذهاب إلى أستراليا");
   sliderModel.setTitle("السفر");
   sliderModel.setImageAssetPath("assets/images/travel.jpg");
   sliderModel.setCol(Colors.amber);
