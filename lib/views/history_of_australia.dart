@@ -1,3 +1,4 @@
+import 'package:about_australia/theme/app_colors.dart';
 import 'package:about_australia/theme/app_typography.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,30 @@ class HistoryOfAustralia extends StatelessWidget {
     );
   }
 
+  SliverPersistentHeader makeAppbar(String headerText, String immage) {
+    immage = immage;
+    return SliverPersistentHeader(
+      pinned: true,
+      delegate: _SliverAppBarDelegate(
+        minHeight: 60.0,
+        maxHeight: 60.0,
+        child: Container(
+          decoration: BoxDecoration(color: Color(0xffc7c7c7)),
+          child: Center(
+            child: Text(
+              "التسلسل الزمني للتاريخ الاسترالي",
+              style: AppTypography.headerMedium.copyWith(
+                  fontSize: 20,
+                  letterSpacing: 2,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Container card(String title, String Stitle, Color colour) {
     title = title;
     Stitle = Stitle;
@@ -96,7 +121,7 @@ class HistoryOfAustralia extends StatelessWidget {
         ));
   }
 
-  Padding cont(String cont) {
+  Widget cont(String cont) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Text(
@@ -113,9 +138,10 @@ class HistoryOfAustralia extends StatelessWidget {
       child: SafeArea(
         child: CustomScrollView(
           slivers: <Widget>[
+            makeAppbar('قبل الميلاد', 'assets/art.jpg'),
             makeHeader('قبل الميلاد', 'assets/art.jpg'),
             SliverFixedExtentList(
-              itemExtent: 680.0,
+              itemExtent: 650.0,
               delegate: SliverChildListDelegate([
                 Container(
                     color: Colors.white,
@@ -148,7 +174,7 @@ class HistoryOfAustralia extends StatelessWidget {
             ),
             makeHeader('Header Section 3', 'assets/cook.jpg'),
             SliverFixedExtentList(
-              itemExtent: 710.0,
+              itemExtent: 680.0,
               delegate: SliverChildListDelegate([
                 Container(
                     color: Colors.white,
@@ -165,7 +191,7 @@ class HistoryOfAustralia extends StatelessWidget {
             ),
             makeHeader('Header Section 4', 'assets/castle_hill.jpg'),
             SliverFixedExtentList(
-              itemExtent: 770.0,
+              itemExtent: 750.0,
               delegate: SliverChildListDelegate([
                 Container(
                     color: Colors.white,
@@ -182,7 +208,7 @@ class HistoryOfAustralia extends StatelessWidget {
             ),
             makeHeader('Header Section 5', 'assets/rush.jpg'),
             SliverFixedExtentList(
-              itemExtent: 660.0,
+              itemExtent: 620.0,
               delegate: SliverChildListDelegate([
                 Container(
                     color: Colors.white,
@@ -199,7 +225,7 @@ class HistoryOfAustralia extends StatelessWidget {
             ),
             makeHeader('Header Section 6', 'assets/commonwealth.jpg'),
             SliverFixedExtentList(
-              itemExtent: 660.0,
+              itemExtent: 550.0,
               delegate: SliverChildListDelegate([
                 Container(
                     color: Colors.white,

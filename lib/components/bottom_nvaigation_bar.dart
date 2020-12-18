@@ -47,16 +47,16 @@ class _BottomNavigationState extends State<BottomNavigation> {
               icon: Icon(AustraliaIcons.flag_black),
             ),
             BottomNavigationBarItem(
+              label: "السفر",
+              icon: Icon(AustraliaIcons.airplane),
+            ),
+            BottomNavigationBarItem(
               label: "معالم",
               icon: Icon(AustraliaIcons.australia2),
             ),
             BottomNavigationBarItem(
               label: 'تاريخ استراليا',
               icon: Icon(AustraliaIcons.history2),
-            ),
-            BottomNavigationBarItem(
-              label: "السفر",
-              icon: Icon(AustraliaIcons.airplane),
             ),
           ],
           onTap: (index) {

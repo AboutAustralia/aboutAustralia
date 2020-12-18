@@ -50,11 +50,7 @@ class TravelToAustralia extends StatelessWidget {
                           Align(
                             child: Container(
                               child: Text("معلومات للسفر الى استراليا",
-                                  style: AppTypography.headerMedium.copyWith(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: 2,
-                                  )),
+                                  style: AppTypography.headerMedium),
                             ),
                             alignment: Alignment.bottomCenter,
                           ),

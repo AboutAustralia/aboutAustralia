@@ -28,11 +28,7 @@ class _MapTabViewControllerState extends State<MapTabViewController> {
               title: Center(
                 child: Text(
                   "أهم المعالم السياحية في أستراليا",
-                  style: AppTypography.headerMedium.copyWith(
-                      color: Colors.white,
-                      fontSize: 20,
-                      letterSpacing: 2,
-                      fontWeight: FontWeight.w500),
+                  style: AppTypography.headerMedium,
                 ),
               ),
               backgroundColor: Colors.grey.withOpacity(0.5),
