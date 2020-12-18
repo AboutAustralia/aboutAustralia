@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:onboarding/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'views/onboarding.dart';
 
-void  main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -17,7 +19,7 @@ void  main()async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
+  final FirebaseAuth _fAuth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,6 +37,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: OnBoarding());
+        home: _fAuth.currentUser != null
+            ? BottomNavigationBarController()
+            : OnBoarding());
   }
 }
