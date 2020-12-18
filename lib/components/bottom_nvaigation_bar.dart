@@ -22,45 +22,50 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
         ],
       ),
-      child: BottomNavigationBar(
-        unselectedItemColor: Colors.white,
-        showSelectedLabels: true,
-        selectedLabelStyle:
-            TextStyle(fontFamily: "Gotham", fontWeight: FontWeight.w300),
-        showUnselectedLabels: false,
-        currentIndex: widget.currentIndex,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColors.darkBlue,
-        selectedItemColor: AppColors.aquaBlue,
-        iconSize: 30,
-        selectedIconTheme: IconThemeData(size: 35),
-        items: [
-          BottomNavigationBarItem(
-            label: 'تاريخ استراليا',
-            icon: Icon(
-              Icons.menu_book_outlined,
+      child: SizedBox(
+        height:  MediaQuery.of(context).size.height*0.11,
+        child: BottomNavigationBar(
+          unselectedItemColor: Colors.white,
+          showSelectedLabels: true,
+
+          selectedLabelStyle:
+              TextStyle(fontFamily: "Gotham", fontWeight: FontWeight.w300),
+          showUnselectedLabels: false,
+          currentIndex: widget.currentIndex,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: AppColors.darkBlue,
+          selectedItemColor: AppColors.aquaBlue,
+          iconSize: 25,
+          selectedIconTheme: IconThemeData(size: 27),
+          items: [
+            BottomNavigationBarItem(
+              label: 'تاريخ استراليا',
+              icon: Icon(
+                Icons.menu_book_outlined,
+              ),
             ),
-          ),
-          BottomNavigationBarItem(
-            label: 'عن استراليا',
-            icon: Icon(Icons.bus_alert),
-          ),
-          BottomNavigationBarItem(
-            label: "اماكن",
-            icon: Icon(Icons.place),
-          ),
-          BottomNavigationBarItem(
-            label: "السفر",
-            icon: Icon(Icons.airplanemode_active_rounded),
-          ),
-          BottomNavigationBarItem(
-            label: "الاسئلة",
-            icon: Icon(Icons.help),
-          ),
-        ],
-        onTap: (index) {
-          widget.setCurrentIndex(index);
-        },
+            BottomNavigationBarItem(
+              label: 'عن استراليا',
+              icon: Icon(Icons.bus_alert),
+            ),
+            BottomNavigationBarItem(
+              label: "اماكن",
+              icon: Icon(Icons.place),
+            ),
+            BottomNavigationBarItem(
+              label: "السفر",
+              icon: Icon(Icons.airplanemode_active_rounded),
+            ),
+            BottomNavigationBarItem(
+              label: "الاسئلة",
+              icon: Icon(Icons.help),
+            ),
+          ],
+          onTap: (index) {
+            widget.setCurrentIndex(index);
+            print(index);
+          },
+        ),
       ),
     );
   }
