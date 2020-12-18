@@ -80,6 +80,20 @@ flutter:
     - family: AustraliaIcons
       fonts:
         - asset: assets/icons/AustraliaIcons.ttf
+    - family: Madani
+      fonts:
+        - asset: assets/fonts/Madani-Arabic-Black.ttf
+        - asset: assets/fonts/Madani-Arabic-Bold.ttf
+        - asset: assets/fonts/Madani-Arabic-Extra-Bold.ttf
+        - asset: assets/fonts/Madani-Arabic-Extra-light.ttf
+        - asset: assets/fonts/Madani-Arabic-light.ttf
+        - asset: assets/fonts/Madani-Arabic-Medium.ttf
+        - asset: assets/fonts/Madani-Arabic-Regular.ttf
+        - asset: assets/fonts/Madani-Arabic-Semi-Bold.ttf
+        - asset: assets/fonts/Madani-Arabic-Thin.ttf
+        - asset: assets/fonts/Madani-Arabic-Variable.ttf
+
+
 
 
   # The following line ensures that the Material Icons font is

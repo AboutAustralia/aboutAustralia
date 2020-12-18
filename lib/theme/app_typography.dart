@@ -16,6 +16,11 @@ class AppTypography {
       fontWeight: FontWeight.w500,
       letterSpacing: 2,
       height: 24 / 16);
+  static const bodyMedium2 = TextStyle(
+      fontFamily: "Montserrat",
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 2);
   static const bodyMedium = TextStyle(
       fontFamily: "Montserrat",
       fontSize: 14,

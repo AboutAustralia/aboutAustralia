@@ -141,10 +141,10 @@ class _OnBoardingState extends State<OnBoarding> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(left: 5, right: 10, top: 10, bottom: 10),
+                          padding: const EdgeInsets.only(
+                              left: 5, right: 10, top: 10, bottom: 10),
                           child: Container(
                             height: 50,
-
                             child: Expanded(
                               flex: 6,
                               child: FlatButton(
@@ -169,7 +169,7 @@ class _OnBoardingState extends State<OnBoarding> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 5, top: 10, bottom: 10),
+                          padding: const EdgeInsets.all(16),
                           child: Container(
                             height: 50,
                             child: Expanded(
@@ -195,7 +195,9 @@ class _OnBoardingState extends State<OnBoarding> {
                                       FontAwesomeIcons.google,
                                       color: Colors.white,
                                     ),
-                                    SizedBox(width: 10,),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                     Text("تسجيل دخول",
                                         style: AppTypography.bodyMedium
                                             .copyWith(color: Colors.white)),

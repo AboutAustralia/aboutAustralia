@@ -61,7 +61,7 @@ class AboutAustraliaCard extends StatelessWidget {
                               horizontal: 8, vertical: 16.0),
                           child: Text(
                             cardInformationModel.title,
-                            style: AppTypography.bodyMedium
+                            style: AppTypography.bodyMedium2
                                 .copyWith(color: AppColors.neutrals[700]),
                           ),
                         ),
