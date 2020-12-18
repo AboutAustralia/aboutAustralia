@@ -14,12 +14,14 @@ class AppTypography {
       fontFamily: "Montserrat",
       fontSize: 16,
       fontWeight: FontWeight.w500,
+      letterSpacing: 2,
       height: 24 / 16);
   static const bodyMedium = TextStyle(
-    fontFamily: "Montserrat",
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-  );
+      fontFamily: "Montserrat",
+      fontSize: 14,
+      letterSpacing: 2,
+      fontWeight: FontWeight.w500,
+      height: 24 / 16);
   static const answerPreview = TextStyle(
       fontFamily: "Montserrat",
       fontSize: 12,

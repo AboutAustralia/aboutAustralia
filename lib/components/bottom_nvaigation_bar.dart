@@ -1,3 +1,4 @@
+import 'package:about_australia/australia_icons_icons.dart';
 import 'package:about_australia/theme/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,47 +24,43 @@ class _BottomNavigationState extends State<BottomNavigation> {
         ],
       ),
       child: SizedBox(
-        height:  MediaQuery.of(context).size.height*0.11,
+        height: MediaQuery.of(context).size.height * 0.11,
         child: BottomNavigationBar(
-          unselectedItemColor: Colors.white,
+          unselectedItemColor: AppColors.aquaBlue,
           showSelectedLabels: true,
-
           selectedLabelStyle:
               TextStyle(fontFamily: "Gotham", fontWeight: FontWeight.w300),
           showUnselectedLabels: false,
           currentIndex: widget.currentIndex,
           type: BottomNavigationBarType.fixed,
           backgroundColor: AppColors.darkBlue,
-          selectedItemColor: AppColors.aquaBlue,
-          iconSize: 25,
+          selectedItemColor: Colors.white,
+          iconSize: 30,
           selectedIconTheme: IconThemeData(size: 27),
           items: [
             BottomNavigationBarItem(
               label: 'تاريخ استراليا',
-              icon: Icon(
-                Icons.menu_book_outlined,
-              ),
+              icon: Icon(AustraliaIcons.history2),
             ),
             BottomNavigationBarItem(
               label: 'عن استراليا',
-              icon: Icon(Icons.bus_alert),
+              icon: Icon(AustraliaIcons.flag_black),
             ),
             BottomNavigationBarItem(
-              label: "اماكن",
-              icon: Icon(Icons.place),
+              label: "معالم",
+              icon: Icon(AustraliaIcons.australia2),
             ),
             BottomNavigationBarItem(
               label: "السفر",
-              icon: Icon(Icons.airplanemode_active_rounded),
+              icon: Icon(AustraliaIcons.airplane),
             ),
             BottomNavigationBarItem(
               label: "الاسئلة",
-              icon: Icon(Icons.help),
+              icon: Icon(AustraliaIcons.conversation),
             ),
           ],
           onTap: (index) {
             widget.setCurrentIndex(index);
-            print(index);
           },
         ),
       ),

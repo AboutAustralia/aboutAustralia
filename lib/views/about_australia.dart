@@ -1,3 +1,4 @@
+import 'package:about_australia/australia_icons_icons.dart';
 import 'package:about_australia/components/about_australia_card.dart';
 import 'package:about_australia/components/google_maps/background_container.dart';
 import 'package:about_australia/components/travel_information_card.dart';
@@ -125,7 +126,7 @@ class AboutAustralia extends StatelessWidget {
                                       Column(
                                         children: [
                                           Icon(
-                                            Icons.question_answer_outlined,
+                                            Icons.language,
                                             size: 40,
                                             color: AppColors.aquaBlue,
                                           ),
@@ -135,7 +136,7 @@ class AboutAustralia extends StatelessWidget {
                                                       color: AppColors
                                                           .neutrals[500])),
                                           Text(
-                                            "123,141",
+                                            "الإنجليزية",
                                             style: AppTypography.bodyNormal
                                                 .copyWith(
                                                     color: AppColors
@@ -154,17 +155,17 @@ class AboutAustralia extends StatelessWidget {
                                       Column(
                                         children: [
                                           Icon(
-                                            Icons.language,
-                                            size: 40,
+                                            AustraliaIcons.people,
                                             color: AppColors.aquaBlue,
+                                            size: 40,
                                           ),
-                                          Text("اللغة",
+                                          Text("تعداد السكان",
                                               style: AppTypography.bodyMedium
                                                   .copyWith(
                                                       color: AppColors
                                                           .neutrals[500])),
                                           Text(
-                                            "5.34",
+                                            "24.99 مليون",
                                             style: AppTypography.bodyNormal
                                                 .copyWith(
                                                     color: AppColors
@@ -181,17 +182,16 @@ class AboutAustralia extends StatelessWidget {
                                       Column(
                                         children: [
                                           Icon(
-                                            Icons.people_outline,
+                                            Icons.location_city,
                                             color: AppColors.aquaBlue,
-                                            size: 40,
                                           ),
-                                          Text("اللغة",
+                                          Text("العاصمة",
                                               style: AppTypography.bodyMedium
                                                   .copyWith(
                                                       color: AppColors
                                                           .neutrals[500])),
                                           Text(
-                                            "الانجليزية",
+                                            "كانبيرا",
                                             style: AppTypography.bodyNormal
                                                 .copyWith(
                                                     color: AppColors

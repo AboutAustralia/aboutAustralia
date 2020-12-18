@@ -9,13 +9,12 @@ import 'package:onboarding/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'views/onboarding.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-
-    runApp(MyApp());
-
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -38,6 +37,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home:_fAuth.currentUser != null? BottomNavigationBarController():OnBoarding());
+        home: _fAuth.currentUser != null
+            ? BottomNavigationBarController()
+            : OnBoarding());
   }
 }

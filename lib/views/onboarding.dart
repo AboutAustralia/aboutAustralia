@@ -16,8 +16,8 @@ class OnBoarding extends StatefulWidget {
 
 class _OnBoardingState extends State<OnBoarding> {
   List<SliderModel> slide = new List<SliderModel>();
-  int currentIndex = 4;
-  PageController controller = new PageController(initialPage: 4);
+  int currentIndex = 0;
+  PageController controller = new PageController(initialPage: 0);
 
   @override
   void initState() {
@@ -25,14 +25,14 @@ class _OnBoardingState extends State<OnBoarding> {
     slide = getSlides();
   }
 
-  Widget pageIndexIndicator(bool isCurrent, int index) {
+  Widget pageIndexIndicator(bool isCurrent, int index, colour) {
     return SafeArea(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 2),
-        height: isCurrent ? 10.0 : 6.0,
-        width: isCurrent ? 10.0 : 6.0,
+        height: isCurrent ? 15.0 : 9.0,
+        width: isCurrent ? 15.0 : 9.0,
         decoration: BoxDecoration(
-          color: isCurrent ? Color(0xff961c00) : Colors.grey[700],
+          color: isCurrent ? colour : Colors.white.withOpacity(0.6),
           borderRadius: BorderRadius.circular(12),
         ),
       ),
@@ -128,39 +128,108 @@ class _OnBoardingState extends State<OnBoarding> {
               imageAssetPath: slide[index].getImageAssetPath(),
               title: slide[index].getTitle(),
               desc: slide[index].getDesc(),
-              colour: Color(0xff023047),
+              colour: slide[index].getColour(),
             );
           },
         ),
-        currentIndex != slide.length - slide.length
+        currentIndex == 3
             ? Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  FlatButton(
-                    onPressed: () {
-                      controller.animateToPage(slide.length - slide.length,
-                          duration: Duration(milliseconds: 400),
-                          curve: Curves.linear);
-                    },
-                    color: Colors.transparent,
-                    child: Text("تخطي",
-                        style: AppTypography.bodyNormal
-                            .copyWith(color: Colors.white)),
-                  ),
-                  SizedBox(
-                    height: 495,
-                  ),
                   Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Material(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Container(
+                            height: 50,
+                            child: FlatButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          BottomNavigationBarController(
+                                              currentIndex: 0)),
+                                );
+                              },
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                              color: Colors.transparent,
+                              child: Text("المتابعة بدون حساب",
+                                  style: AppTypography.bodyMedium
+                                      .copyWith(color: Colors.white)),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: Container(
+                            height: 50,
+                            child: FlatButton(
+                              onPressed: () {
+                                _GooglesignIn();
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          BottomNavigationBarController(
+                                              currentIndex: 0)),
+                                );
+                              },
+                              color: Colors.grey.withOpacity(0.4),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                              child: Text("تسجيل دخول",
+                                  style: AppTypography.bodyMedium
+                                      .copyWith(color: Colors.white)),
+                            ),
+                          ),
+                        ),
+                      ]),
+                ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      height: 40,
+                      width: 75,
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        hoverColor: Colors.redAccent,
+                        onPressed: () {
+                          controller.animateToPage(3,
+                              duration: Duration(milliseconds: 400),
+                              curve: Curves.linear);
+                        },
+                        color: Colors.grey.withOpacity(0.3),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                          child: Text("تخطي",
+                              style: AppTypography.bodyMedium
+                                  .copyWith(color: Colors.white)),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 32.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Material(
                             color: Colors.transparent,
                             child: IconButton(
-                              icon: Icon(
-                                Icons.navigate_before,
-                                color: Color(0xff023047),
-                              ),
+                              icon: Icon(Icons.navigate_before,
+                                  color: Colors.white),
                               iconSize: 40,
                               onPressed: () {
                                 controller.animateToPage(currentIndex - 1,
@@ -168,87 +237,32 @@ class _OnBoardingState extends State<OnBoarding> {
                                     curve: Curves.linear);
                               },
                             )),
-                      ),
-                      SizedBox(
-                        width: 90,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          for (int i = 0; i < slide.length; i++)
-                            currentIndex == i
-                                ? pageIndexIndicator(true, i)
-                                : pageIndexIndicator(false, i),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 50,
-                      ),
-                      FlatButton(
-                        onPressed: () {
-                          _GooglesignIn();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    BottomNavigationBarController(
-                                        currentIndex: 0)),
-                          );
-                        },
-                        color: Colors.transparent,
-                        child: Text("تسجيل دخول",
-                            style: AppTypography.bodyNormal
-                                .copyWith(color: AppColors.darkBlue)),
-                      ),
-                    ],
+                        Row(
+                          children: <Widget>[
+                            for (int i = 0; i < slide.length; i++)
+                              currentIndex == i
+                                  ? pageIndexIndicator(true, i, slide[i].colour)
+                                  : pageIndexIndicator(
+                                      false, i, slide[i].colour),
+                          ],
+                        ),
+                        Material(
+                            color: Colors.transparent,
+                            child: IconButton(
+                              icon: Icon(Icons.navigate_next,
+                                  color: Colors.white),
+                              iconSize: 40,
+                              onPressed: () {
+                                controller.animateToPage(currentIndex + 1,
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.linear);
+                              },
+                            )),
+                      ],
+                    ),
                   ),
                 ],
               )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: FlatButton(
-                            onPressed: () {
-                              _GooglesignIn();
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        BottomNavigationBarController(
-                                            currentIndex: 0)),
-                              );
-                            },
-                            color: Colors.transparent,
-                            child: Text("تسجيل دخول",
-                                style: AppTypography.bodyNormal
-                                    .copyWith(color: AppColors.darkBlue)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: FlatButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        BottomNavigationBarController(
-                                            currentIndex: 0)),
-                              );
-                            },
-                            color: Colors.transparent,
-                            child: Text("المتابعة بدون حساب",
-                                style: AppTypography.bodyNormal
-                                    .copyWith(color: AppColors.darkBlue)),
-                          ),
-                        )
-                      ]),
-                ],
-              ),
       ]),
     );
   }
@@ -276,20 +290,18 @@ class Slider extends StatelessWidget {
                 ),
               ),
             ),
-            Opacity(
-              opacity: 0.6,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Color(0xff023047).withOpacity(1),
-                        Color(0xff034160).withOpacity(1),
-                        Colors.cyan[200],
-                        Colors.white,
-                      ],
-                      begin: AlignmentDirectional.topCenter,
-                      end: Alignment.bottomCenter),
-                ),
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                      AppColors.darkBlue.withOpacity(0.6),
+                      AppColors.darkBlue.withOpacity(0.4),
+                      AppColors.darkBlue.withOpacity(0.3),
+                      Colors.white.withOpacity(0.3),
+                      Colors.grey.withOpacity(0.6),
+                    ],
+                    begin: AlignmentDirectional.topCenter,
+                    end: Alignment.bottomCenter),
               ),
             ),
             Center(
@@ -304,32 +316,27 @@ class Slider extends StatelessWidget {
                   ),
                   Container(
                     padding: EdgeInsets.all(8),
-                    height: 35,
-                    width: 100,
-                    child: Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
+                    height: 40,
+                    width: 110,
+                    child: Center(
+                      child: Text(title,
+                          textAlign: TextAlign.center,
+                          style: AppTypography.bodyMedium
+                              .copyWith(color: Colors.white)),
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      color: colour,
-                    ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                        color: colour),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Text(
                     desc,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
+                    style:
+                        AppTypography.bodyNormal.copyWith(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
