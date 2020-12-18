@@ -67,7 +67,8 @@ class _OnBoardingState extends State<OnBoarding> {
     var photourl = googleuser.photoURL;
     var userid = googleSignInAccount.id;
     var token = gSA.accessToken;
-    db.addUser(displayname, photourl, userid, token);
+    var uid = _fAuth.currentUser.uid;
+    db.addUser(displayname, photourl, userid, token, uid);
     print(displayname);
     store_user_detail(userid, photourl, displayname);
 
@@ -145,6 +146,7 @@ class _OnBoardingState extends State<OnBoarding> {
                               left: 5, right: 10, top: 10, bottom: 10),
                           child: Container(
                             height: 50,
+
                             child: Expanded(
                               flex: 6,
                               child: FlatButton(
@@ -169,7 +171,8 @@ class _OnBoardingState extends State<OnBoarding> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(16),
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 5, top: 10, bottom: 10),
                           child: Container(
                             height: 50,
                             child: Expanded(

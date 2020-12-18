@@ -3,7 +3,6 @@ import 'package:about_australia/theme/app_colors.dart';
 import 'package:about_australia/theme/app_typography.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert' as JSON;
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,18 +20,19 @@ class _questionsAnswersState extends State<questionsAnswers> {
   var _token;
 
   final FirebaseAuth _fAuth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = new GoogleSignIn();
+  final GoogleSignIn googleSignIn =  GoogleSignIn();
   bool _logged_in;
   final storage = new FlutterSecureStorage();
   DatabaseReference ref = FirebaseDatabase.instance.reference();
   final db = FireStoreAPI();
+
   //Google login
   //login proved us with username, imageurl, token and user id
   Future<User> _GooglesignIn() async {
     GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
 
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
+    final AuthCredential credential = GoogleAuthProvider.credential(
       accessToken: gSA.accessToken,
       idToken: gSA.idToken,
     );
@@ -43,7 +43,8 @@ class _questionsAnswersState extends State<questionsAnswers> {
     var photourl = googleuser.photoURL;
     var userid = googleSignInAccount.id;
     var token = gSA.accessToken;
-    db.addUser(displayname, photourl, userid, token);
+    var uid = _fAuth.currentUser.uid;
+    db.addUser(displayname, photourl, userid, token, uid);
     print(displayname);
     store_user_detail(userid, photourl, displayname);
 
@@ -58,7 +59,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
     setState(() {
       if (_fAuth.currentUser != null) {
         _logged_in = true;
-      }else{
+      } else {
         _logged_in = false;
       }
     });
@@ -116,6 +117,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
   }
 
   showLogin(BuildContext context) {
+
     read_token();
     return PopupMenuButton<String>(
         onSelected: handleClick,
@@ -160,7 +162,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
           }
         });
   }
-
+  TextEditingController ques = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -177,14 +179,14 @@ class _questionsAnswersState extends State<questionsAnswers> {
                 children: [
                   Center(
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 50),
-                        child: Text(
-                    "الأسئلة الشائعة",
-                    style: AppTypography.headerMedium.copyWith(
+                    padding: const EdgeInsets.only(right: 50),
+                    child: Text(
+                      "الأسئلة الشائعة",
+                      style: AppTypography.headerMedium.copyWith(
                         fontSize: 20,
+                      ),
                     ),
-                  ),
-                      )),
+                  )),
                 ]),
             backgroundColor: AppColors.darkBlue,
             floating: false,
@@ -204,14 +206,102 @@ class _questionsAnswersState extends State<questionsAnswers> {
                       height: 40,
                       width: MediaQuery.of(context).size.width * 0.6,
                       child: FlatButton(
-                        onPressed: (){
+                        onPressed: () {
                           read_token();
-                          if(!_logged_in){
+                          if (!_logged_in) {
+                            showDialog(
+                                context: context,
+                                builder: (_) => new AlertDialog(
+                                      title: new Text(
+                                          "يجب عليك تسجيل الدخول أولًا",
+                                          style: AppTypography.bodyNormal
+                                              .copyWith(
+                                                  color: AppColors.darkBlue)),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                FontAwesomeIcons.google,
+                                                color: AppColors.darkBlue,
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text("تسجيل دخول",
+                                                  style: AppTypography
+                                                      .bodyMedium
+                                                      .copyWith(
+                                                          color: AppColors
+                                                              .darkBlue)),
+                                            ],
+                                          ),
+                                          onPressed: () {
+                                            _GooglesignIn();
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    ));
+                          } else {
 
-                          }else{
-
-
-
+                            showDialog(
+                                context: context,
+                                builder: (_) => new AlertDialog(
+                                      title: Row(children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.pen,
+                                          color: AppColors.darkBlue,
+                                          size: 20,
+                                        ),
+                                        SizedBox(width: 5,),
+                                        Text("سؤال جديد",
+                                            style: AppTypography.bodyNormal
+                                                .copyWith(
+                                                    color: AppColors.darkBlue)),
+                                      ]),
+                                      content: TextField(
+                                        style: AppTypography.bodyMedium.copyWith(
+                                            color: AppColors.darkBlue),
+                                          maxLines:null,
+                                          controller: ques,
+                                          decoration: InputDecoration(
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: AppColors.darkBlue,
+                                                  width: 1.0),
+                                            ),
+                                            hintText: 'اكتب سؤالك',
+                                            hintStyle: AppTypography.bodyMedium
+                                                .copyWith(
+                                                    color: Colors.grey[400])),
+                                      ),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text("اسأل",
+                                              style: AppTypography.bodyMedium
+                                                  .copyWith(
+                                                      color:
+                                                          AppColors.darkBlue)),
+                                          onPressed: () {
+                                            String q = ques.text;
+                                            db.addQuestion(q,_fAuth.currentUser.uid);
+                                            ques.clear();
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        FlatButton(
+                                          child: Text("الغاء",
+                                              style: AppTypography.bodyMedium
+                                                  .copyWith(
+                                                      color:
+                                                          AppColors.darkBlue)),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    ));
                           }
                         },
                         child: Row(
