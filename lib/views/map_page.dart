@@ -20,8 +20,6 @@ class MapPage extends StatefulWidget {
 
 class MapPageState extends State<MapPage> {
   final ItemScrollController itemScrollController = ItemScrollController();
-  final ItemPositionsListener itemPositionsListener =
-      ItemPositionsListener.create();
 
   Completer<GoogleMapController> _controller = Completer();
   BitmapDescriptor customIcon;
@@ -66,28 +64,101 @@ class MapPageState extends State<MapPage> {
           markerId: MarkerId('operaHouse'),
           position: LatLng(-33.85651709284762, 151.21539325698433),
           onTap: () {
-            itemScrollController.scrollTo(
-                index: 6,
-                duration: Duration(seconds: 1),
-                curve: Curves.easeInOutCubic);
+            itemScrollController.jumpTo(
+              index: 0,
+            );
           },
-          infoWindow: InfoWindow(
-            title: "دار أوبرا سيدني",
-          ),
           icon: customIcon),
       Marker(
-          markerId: MarkerId('operaHouse'),
-          position: LatLng(-33.85651709284762, 151.21539325698433),
+          markerId: MarkerId('operfafaHouse'),
+          position: LatLng(-18.2871, 147.6992),
           onTap: () {
             itemScrollController.scrollTo(
-                index: 6,
+                index: 1,
                 duration: Duration(seconds: 1),
                 curve: Curves.easeInOutCubic);
           },
-          infoWindow: InfoWindow(
-            title: "دار أوبرا سيدني",
-          ),
-          icon: customIcon)
+          icon: customIcon),
+      Marker(
+        markerId: MarkerId('faf1'),
+        position: LatLng(-25.3438, 131.0347),
+        onTap: () {
+          itemScrollController.scrollTo(
+              index: 2,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOutCubic);
+        },
+      ),
+      Marker(
+        markerId: MarkerId('3'),
+        position: LatLng(-33.8523, 151.2108),
+        onTap: () {
+          itemScrollController.scrollTo(
+              index: 3,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOutCubic);
+        },
+      ),
+      Marker(
+        markerId: MarkerId('4'),
+        position: LatLng(-33.6176, 150.4559),
+        onTap: () {
+          itemScrollController.scrollTo(
+              index: 4,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOutCubic);
+        },
+      ),
+      Marker(
+        markerId: MarkerId('5'),
+        position: LatLng(-37.8136, 144.9631),
+        onTap: () {
+          itemScrollController.scrollTo(
+              index: 5,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOutCubic);
+        },
+      ),
+      Marker(
+        markerId: MarkerId('6'),
+        position: LatLng(-33.8915, 151.2767),
+        onTap: () {
+          itemScrollController.scrollTo(
+              index: 6,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOutCubic);
+        },
+      ),
+      Marker(
+        markerId: MarkerId('7'),
+        position: LatLng(-16.3014, 145.2480),
+        onTap: () {
+          itemScrollController.scrollTo(
+              index: 7,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOutCubic);
+        },
+      ),
+      Marker(
+        markerId: MarkerId('8'),
+        position: LatLng(-25.2398, 153.1325),
+        onTap: () {
+          itemScrollController.scrollTo(
+              index: 8,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOutCubic);
+        },
+      ),
+      Marker(
+        markerId: MarkerId('9'),
+        position: LatLng(-13.0923, 132.3938),
+        onTap: () {
+          itemScrollController.scrollTo(
+              index: 9,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOutCubic);
+        },
+      ),
     ].toSet();
   }
 
@@ -153,7 +224,6 @@ class MapPageState extends State<MapPage> {
           },
           scrollDirection: Axis.horizontal,
           itemScrollController: itemScrollController,
-          itemPositionsListener: itemPositionsListener,
         ),
         // child: ListView(
         //   scrollDirection: Axis.horizontal,
