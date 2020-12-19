@@ -40,7 +40,7 @@ class FireStoreAPI {
       'qID': qID,
       'answer': null,
       'useful': 0,
-      'interested': 0
+      'interested': 1
     })
         .then((value) => print("Question added"))
         .catchError((error) => print("Failed to add question: $error"));
