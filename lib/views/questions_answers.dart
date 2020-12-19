@@ -162,7 +162,9 @@ class _questionsAnswersState extends State<questionsAnswers> {
           }
         });
   }
+
   TextEditingController ques = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
