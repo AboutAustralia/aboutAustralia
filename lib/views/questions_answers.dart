@@ -20,7 +20,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
   var _token;
 
   final FirebaseAuth _fAuth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn =  GoogleSignIn();
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   bool _logged_in;
   final storage = new FlutterSecureStorage();
   DatabaseReference ref = FirebaseDatabase.instance.reference();
@@ -46,7 +46,6 @@ class _questionsAnswersState extends State<questionsAnswers> {
     var uid = _fAuth.currentUser.uid;
     db.addUser(displayname, photourl, userid, token, uid);
     print(displayname);
-    store_user_detail(userid, photourl, displayname);
 
     store_token(token);
     read_token();
@@ -72,12 +71,6 @@ class _questionsAnswersState extends State<questionsAnswers> {
 
   Future store_token(String valid_token) async {
     await storage.write(key: 'valid_token', value: '$valid_token');
-  }
-
-  Future store_user_detail(String userid, userimage, username) async {
-    await storage.write(key: 'user-id', value: '$userid');
-    await storage.write(key: 'user-image', value: '$userimage');
-    await storage.write(key: 'user-name', value: '$username');
   }
 
   //google auth end
@@ -117,7 +110,6 @@ class _questionsAnswersState extends State<questionsAnswers> {
   }
 
   showLogin(BuildContext context) {
-
     read_token();
     return PopupMenuButton<String>(
         onSelected: handleClick,
@@ -246,7 +238,6 @@ class _questionsAnswersState extends State<questionsAnswers> {
                                       ],
                                     ));
                           } else {
-
                             showDialog(
                                 context: context,
                                 builder: (_) => new AlertDialog(
@@ -256,18 +247,21 @@ class _questionsAnswersState extends State<questionsAnswers> {
                                           color: AppColors.darkBlue,
                                           size: 20,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("سؤال جديد",
                                             style: AppTypography.bodyNormal
                                                 .copyWith(
                                                     color: AppColors.darkBlue)),
                                       ]),
                                       content: TextField(
-                                        style: AppTypography.bodyMedium.copyWith(
-                                            color: AppColors.darkBlue),
-                                          maxLines:null,
-                                          controller: ques,
-                                          decoration: InputDecoration(
+                                        style: AppTypography.bodyMedium
+                                            .copyWith(
+                                                color: AppColors.darkBlue),
+                                        maxLines: null,
+                                        controller: ques,
+                                        decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                   color: AppColors.darkBlue,
@@ -287,7 +281,8 @@ class _questionsAnswersState extends State<questionsAnswers> {
                                                           AppColors.darkBlue)),
                                           onPressed: () {
                                             String q = ques.text;
-                                            db.addQuestion(q,_fAuth.currentUser.uid);
+                                            db.addQuestion(
+                                                q, _fAuth.currentUser.uid);
                                             ques.clear();
                                             Navigator.of(context).pop();
                                           },
@@ -337,7 +332,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
           delegate: SliverChildBuilderDelegate(
             // The builder function returns a ListTile with a title that
             // displays the index of the current item.
-            (context, index) => questionCard(
+            (context, index) => QuestionCard(
               questionText: "عندي سؤال مهم جدا واللهي ومحتاج جوابه بسرعة",
               answerPreview:
                   "ابشر يخوي جوابك جاي عالسريع ولا يهمك لانه السفارة الاسترالية اشي خرافي يعني",
@@ -354,19 +349,25 @@ class _questionsAnswersState extends State<questionsAnswers> {
   }
 }
 
-class questionCard extends StatelessWidget {
-  questionCard(
+class QuestionCard extends StatelessWidget {
+  QuestionCard(
       {Key key,
       this.questionText,
-      this.answerPreview,
-      this.askedBy,
-      this.useful})
+             this.answerPreview,
+             this.askedBy,
+             this.useful,
+      //       this.photoUrl,
+      //       this.interested,
+      this.qid})
       : super(key: key);
 
-  final String questionText;
-  final String answerPreview;
-  final String askedBy;
-  final int useful;
+  final String qid;
+  String questionText;
+  String answerPreview;
+  String askedBy;
+  int useful;
+  String photoUrl;
+  int interested;
 
   @override
   Widget build(BuildContext context) {
