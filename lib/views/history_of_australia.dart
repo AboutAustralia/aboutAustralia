@@ -24,7 +24,7 @@ class HistoryOfAustralia extends StatelessWidget {
             ])),
         child: Column(
 
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
                 padding: const EdgeInsets.only(top: 24, right: 16.0),
