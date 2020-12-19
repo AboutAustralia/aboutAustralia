@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:about_australia/theme/app_colors.dart';
 import 'package:about_australia/theme/app_typography.dart';
@@ -159,203 +160,247 @@ class _questionsAnswersState extends State<questionsAnswers> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
-        // Add the app bar to the CustomScrollView.
-        SliverAppBar(
-            snap: false,
-            actions: [showLogin(context)],
-            title: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //mainAxisSize: MainAxisSize.min,
+    return SafeArea(
 
-                children: [
-                  Center(
-                      child: Padding(
-                    padding: const EdgeInsets.only(right: 50),
-                    child: Text(
-                      "الأسئلة الشائعة",
-                      style: AppTypography.headerMedium.copyWith(
-                        fontSize: 20,
-                      ),
-                    ),
-                  )),
-                ]),
-            backgroundColor: AppColors.darkBlue,
-            floating: false,
-            pinned: true,
-            // Display a placeholder widget to visualize the shrinking size.
-            //  Make the initial height of the SliverAppBar larger than normal.
-            expandedHeight: 110,
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              collapseMode: CollapseMode.pin,
-              background: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      height: 40,
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      child: FlatButton(
-                        onPressed: () {
-                          read_token();
-                          if (!_logged_in) {
-                            showDialog(
-                                context: context,
-                                builder: (_) => new AlertDialog(
-                                      title: new Text(
-                                          "يجب عليك تسجيل الدخول أولًا",
-                                          style: AppTypography.bodyNormal
-                                              .copyWith(
-                                                  color: AppColors.darkBlue)),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                                FontAwesomeIcons.google,
-                                                color: AppColors.darkBlue,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            // Add the app bar to the CustomScrollView.
+            SliverAppBar(
+                snap: false,
+                actions: [showLogin(context)],
+                title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //mainAxisSize: MainAxisSize.min,
+
+                    children: [
+                      Center(
+                          child: Padding(
+                        padding: const EdgeInsets.only(right: 50),
+                        child: Text(
+                          "الأسئلة الشائعة",
+                          style: AppTypography.headerMedium.copyWith(
+                            fontSize: 20,
+                          ),
+                        ),
+                      )),
+                    ]),
+                backgroundColor: AppColors.darkBlue,
+                floating: false,
+                pinned: true,
+                // Display a placeholder widget to visualize the shrinking size.
+                //  Make the initial height of the SliverAppBar larger than normal.
+                expandedHeight: 110,
+                flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  collapseMode: CollapseMode.pin,
+                  background: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          child: FlatButton(
+                            onPressed: () {
+                              read_token();
+                              if (!_logged_in) {
+                                showDialog(
+                                    context: context,
+                                    builder: (_) => new AlertDialog(
+                                          title: new Text(
+                                              "يجب عليك تسجيل الدخول أولًا",
+                                              style: AppTypography.bodyNormal
+                                                  .copyWith(
+                                                      color: AppColors.darkBlue)),
+                                          actions: <Widget>[
+                                            FlatButton(
+                                              child: Row(
+                                                children: [
+                                                  Icon(
+                                                    FontAwesomeIcons.google,
+                                                    color: AppColors.darkBlue,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text("تسجيل دخول",
+                                                      style: AppTypography
+                                                          .bodyMedium
+                                                          .copyWith(
+                                                              color: AppColors
+                                                                  .darkBlue)),
+                                                ],
                                               ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text("تسجيل دخول",
-                                                  style: AppTypography
-                                                      .bodyMedium
+                                              onPressed: () {
+                                                _GooglesignIn();
+                                                Navigator.of(context).pop();
+                                              },
+                                            )
+                                          ],
+                                        ));
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (_) => new AlertDialog(
+                                          title: Row(children: [
+                                            FaIcon(
+                                              FontAwesomeIcons.pen,
+                                              color: AppColors.darkBlue,
+                                              size: 20,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text("سؤال جديد",
+                                                style: AppTypography.bodyNormal
+                                                    .copyWith(
+                                                        color:
+                                                            AppColors.darkBlue)),
+                                          ]),
+                                          content: TextField(
+                                            style: AppTypography.bodyMedium
+                                                .copyWith(
+                                                    color: AppColors.darkBlue),
+                                            maxLines: null,
+                                            controller: ques,
+                                            decoration: InputDecoration(
+                                                focusedBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: AppColors.darkBlue,
+                                                      width: 1.0),
+                                                ),
+                                                hintText: 'اكتب سؤالك',
+                                                hintStyle: AppTypography
+                                                    .bodyMedium
+                                                    .copyWith(
+                                                        color: Colors.grey[400])),
+                                          ),
+                                          actions: <Widget>[
+                                            FlatButton(
+                                              child: Text("اسأل",
+                                                  style: AppTypography.bodyMedium
                                                       .copyWith(
                                                           color: AppColors
                                                               .darkBlue)),
-                                            ],
-                                          ),
-                                          onPressed: () {
-                                            _GooglesignIn();
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    ));
-                          } else {
-                            showDialog(
-                                context: context,
-                                builder: (_) => new AlertDialog(
-                                      title: Row(children: [
-                                        FaIcon(
-                                          FontAwesomeIcons.pen,
-                                          color: AppColors.darkBlue,
-                                          size: 20,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("سؤال جديد",
-                                            style: AppTypography.bodyNormal
-                                                .copyWith(
-                                                    color: AppColors.darkBlue)),
-                                      ]),
-                                      content: TextField(
-                                        style: AppTypography.bodyMedium
-                                            .copyWith(
-                                                color: AppColors.darkBlue),
-                                        maxLines: null,
-                                        controller: ques,
-                                        decoration: InputDecoration(
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: AppColors.darkBlue,
-                                                  width: 1.0),
+                                              onPressed: () {
+                                                String q = ques.text;
+                                                db.addQuestion(
+                                                    q, _fAuth.currentUser.uid);
+                                                ques.clear();
+                                                Navigator.of(context).pop();
+                                              },
                                             ),
-                                            hintText: 'اكتب سؤالك',
-                                            hintStyle: AppTypography.bodyMedium
-                                                .copyWith(
-                                                    color: Colors.grey[400])),
-                                      ),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: Text("اسأل",
-                                              style: AppTypography.bodyMedium
-                                                  .copyWith(
-                                                      color:
-                                                          AppColors.darkBlue)),
-                                          onPressed: () {
-                                            String q = ques.text;
-                                            db.addQuestion(
-                                                q, _fAuth.currentUser.uid);
-                                            ques.clear();
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                        FlatButton(
-                                          child: Text("الغاء",
-                                              style: AppTypography.bodyMedium
-                                                  .copyWith(
-                                                      color:
-                                                          AppColors.darkBlue)),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
-                                    ));
-                          }
-                        },
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
+                                            FlatButton(
+                                              child: Text("الغاء",
+                                                  style: AppTypography.bodyMedium
+                                                      .copyWith(
+                                                          color: AppColors
+                                                              .darkBlue)),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        ));
+                              }
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                ),
+                                Expanded(
+                                    child: Center(
+                                  child: Text(
+                                    "عندك سؤال؟",
+                                    style: AppTypography.bodyNormal
+                                        .copyWith(color: Colors.white),
+                                  ),
+                                ))
+                              ],
                             ),
-                            Expanded(
-                                child: Center(
-                              child: Text(
-                                "عندك سؤال؟",
-                                style: AppTypography.bodyNormal
-                                    .copyWith(color: Colors.white),
-                              ),
-                            ))
-                          ],
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(color: Colors.white)),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )),
+            // Next, create a SliverList
+            StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('questions')
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> querySnapshot) {
+                  if (querySnapshot.hasError) {
+                    return SliverToBoxAdapter(
+                      child: Center(
+                        child: Text(
+                          "حدث خطأ في الشبكة",
+                          style: AppTypography.bodyMedium
+                              .copyWith(color: AppColors.darkBlue),
                         ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.white)),
                       ),
-                    )
-                  ],
-                ),
-              ),
-            )),
-        // Next, create a SliverList
-        SliverList(
-          // Use a delegate to build items as they're scrolled on screen.
-          delegate: SliverChildBuilderDelegate(
-            // The builder function returns a ListTile with a title that
-            // displays the index of the current item.
-            (context, index) => QuestionCard(
-              questionText: "عندي سؤال مهم جدا واللهي ومحتاج جوابه بسرعة",
-              answerPreview:
-                  "ابشر يخوي جوابك جاي عالسريع ولا يهمك لانه السفارة الاسترالية اشي خرافي يعني",
-              askedBy: "someone",
-              useful: 5,
-            ),
-            // Builds 1000 ListTiles
-
-            childCount: 100,
-          ),
+                    );
+                  }
+                  if (querySnapshot.connectionState == ConnectionState.waiting) {
+                    return SliverToBoxAdapter(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    final allQuestions = querySnapshot.data.docs;
+                    print(allQuestions[0]['qID']);
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                          (context, index) => QuestionCard(
+                                qid: allQuestions[index]['qID'],
+                              )),
+                    );
+                  }
+                })
+          ],
         ),
-      ],
+
     );
   }
 }
 
+//SliverList(
+//           // Use a delegate to build items as they're scrolled on screen.
+//           delegate: SliverChildBuilderDelegate(
+//             // The builder function returns a ListTile with a title that
+//             // displays the index of the current item.
+//             (context, index) => QuestionCard(
+//               questionText: "عندي سؤال مهم جدا واللهي ومحتاج جوابه بسرعة",
+//               answerPreview:
+//                   "ابشر يخوي جوابك جاي عالسريع ولا يهمك لانه السفارة الاسترالية اشي خرافي يعني",
+//               askedBy: "someone",
+//               useful: 5,
+//             ),
+//             // Builds 1000 ListTiles
+//
+//             childCount: 100,
+//           ),
+//         ),
+//(context, index){
+//                     return QuestionCard(qid: allQuestions[index]['qid'],);
+//                   }
 class QuestionCard extends StatelessWidget {
   QuestionCard(
       {Key key,
-      this.questionText,
-             this.answerPreview,
-             this.askedBy,
-             this.useful,
+      //this.questionText,
+      //this.answerPreview,
+      //this.askedBy,
+      //this.useful,
       //       this.photoUrl,
       //       this.interested,
       this.qid})
@@ -393,13 +438,13 @@ class QuestionCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      questionText,
+                      'questionText',
                       style: AppTypography.bodyNormal
                           .copyWith(fontSize: 14, height: 1.5),
                     ),
                     SizedBox(height: 5),
                     Text(
-                      answerPreview,
+                      qid,
                       style: AppTypography.answerPreview
                           .copyWith(color: AppColors.neutrals[600]),
                     )
@@ -415,7 +460,7 @@ class QuestionCard extends StatelessWidget {
                   child: Center(
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Icon(Icons.thumb_up), Text(useful.toString())],
+                    children: [Icon(Icons.thumb_up), Text('useful.toString()')],
                   )))
             ],
           ),
