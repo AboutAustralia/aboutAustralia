@@ -7,53 +7,54 @@ import 'dart:core';
 class FireStoreAPI {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<void> addUser(
-      var displayName, var photoUrl, var userID, var token, var uid) {
+  Future<void> addUser(var displayName, var photoUrl, var userID, var token,
+      var uid) {
     CollectionReference users = firestore.collection('users');
     users
         .doc(uid)
         .set({
-          'displayName': displayName,
-          'photoUrl': photoUrl,
-          'userID': userID,
-          'token': token,
-          'uid': uid
-        })
+      'displayName': displayName,
+      'photoUrl': photoUrl,
+      'userID': userID,
+      'token': token,
+      'uid': uid
+    })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
 
-  Future<void> addQuestion(
-    var question,
-    var postedBy,
-  ) {
-    var rand = Random(DateTime.now().millisecondsSinceEpoch.abs());
+  Future<void> addQuestion(var question,
+      var postedBy,) {
+    var rand = Random(DateTime
+        .now()
+        .millisecondsSinceEpoch
+        .abs());
     int qID = rand.nextInt(999999999);
     CollectionReference users = firestore.collection('questions');
     users
         .doc(qID.toString())
         .set({
-          'question': question,
-          'postedBy': postedBy,
-          'time': DateTime.now(),
-          'qID': qID,
-          'answer': null,
-          'useful': 0,
-          'interested': 0
-        })
+      'question': question,
+      'postedBy': postedBy,
+      'time': DateTime.now(),
+      'qID': qID,
+      'answer': null,
+      'useful': 0,
+      'interested': 1
+    })
         .then((value) => print("Question added"))
         .catchError((error) => print("Failed to add question: $error"));
   }
 
-  Future getQuestionInfo(String qid)  async {
-    QuerySnapshot  questions =  await firestore.collection('questions').where('qID', isEqualTo: qid).getDocuments();
+  Future getQuestionInfo(String qid) async {
+    QuerySnapshot questions = await firestore.collection('questions').where(
+        'qID', isEqualTo: qid).getDocuments();
     var temp = questions.documents[0];
     print(temp);
     return temp;
-
   }
 
-   getUserInfo(var uid) {
+  getUserInfo(var uid) {
     CollectionReference users = firestore.collection('users');
     var userInfo;
     users
@@ -75,14 +76,23 @@ class CustomResponse {
   String photoUrl;
   int interested;
 
-  CustomResponse(
-      this.qid,
+  CustomResponse(this.qid,
       this.questionText,
       this.interested,
       this.photoUrl,
       this.answerPreview,
       this.postedBy,
       this.useful);
+
+  Map<String, dynamic> ToMap() {
+    return  {'qid': this.qid,
+      'questionText': this.questionText,
+      'interested': this.interested,
+      'photoUrl': this.photoUrl,
+      'answerPreview': this.answerPreview,
+      'displayName': this.postedBy,
+      'useful': this.useful};
+  }
 
 }
 

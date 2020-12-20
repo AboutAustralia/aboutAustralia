@@ -13,6 +13,12 @@ class AppTypography {
     height: 0.9,
     letterSpacing: 2,
   );
+  static const header3 = TextStyle(
+    fontFamily: "Montserrat",
+    fontSize: 24,
+    height: 0.9,
+    letterSpacing: 2,
+  );
 
   static const headerMedium = TextStyle(
     fontFamily: "Montserrat",

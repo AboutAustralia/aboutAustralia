@@ -31,7 +31,7 @@ class HistoryOfAustralia extends StatelessWidget {
                 child: Text(
                   title,
                   textAlign: TextAlign.right,
-                  style: AppTypography.header2.copyWith(color: colour),
+                  style: AppTypography.header3.copyWith(color: colour),
                 )),
             Padding(
               padding: const EdgeInsets.only(right: 24.0),
