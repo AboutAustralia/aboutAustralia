@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatefulWidget {
-  BottomNavigation({this.currentIndex = 0, this.setCurrentIndex});
+  BottomNavigation({this.currentIndex = 1, this.setCurrentIndex});
   final int currentIndex;
   final Function setCurrentIndex;
   @override
@@ -26,6 +26,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       child: SizedBox(
         height: 70,
         child: BottomNavigationBar(
+
           unselectedItemColor: AppColors.aquaBlue,
           showSelectedLabels: true,
           selectedLabelStyle:
