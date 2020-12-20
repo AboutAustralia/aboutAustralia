@@ -65,7 +65,10 @@ class TravelInformationCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Text(
-                      cardInformationModel.article.substring(0, 10) + "...",
+                      cardInformationModel.description == null
+                          ? cardInformationModel.article.substring(0, 100) +
+                              "..."
+                          : cardInformationModel.description,
                       style: AppTypography.bodyMedium.copyWith(
                           color: descriptionColor != null
                               ? descriptionColor

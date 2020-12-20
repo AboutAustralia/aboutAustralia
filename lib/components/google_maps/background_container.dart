@@ -58,12 +58,15 @@ class BackgroundContainer extends StatelessWidget {
                               : AssetImage(assetPath),
                           fit: BoxFit.cover,
                           alignment: Alignment.topCenter)),
-                  child: BackdropFilter(
-                      filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                      child: new Container(
-                        decoration: new BoxDecoration(
-                            color: Colors.white.withOpacity(0.0)),
-                      )),
+                  child: blurredBackground == true
+                      ? BackdropFilter(
+                          filter:
+                              new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                          child: new Container(
+                            decoration: new BoxDecoration(
+                                color: Colors.white.withOpacity(0.0)),
+                          ))
+                      : SizedBox(),
                 )
               : SizedBox(),
           linearGradient == null ? SizedBox() : linearGradient,

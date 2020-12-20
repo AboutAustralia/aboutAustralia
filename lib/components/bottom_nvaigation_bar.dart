@@ -24,7 +24,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         ],
       ),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.11,
+        height: MediaQuery.of(context).size.height * 0.1,
         child: BottomNavigationBar(
           unselectedItemColor: AppColors.aquaBlue,
           showSelectedLabels: true,
@@ -35,8 +35,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           type: BottomNavigationBarType.fixed,
           backgroundColor: AppColors.darkBlue,
           selectedItemColor: Colors.white,
-          iconSize: 30,
-          selectedIconTheme: IconThemeData(size: 27),
+          iconSize: 35,
           items: [
             BottomNavigationBarItem(
               label: "الاسئلة",
