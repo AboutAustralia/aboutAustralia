@@ -53,9 +53,8 @@ class AboutAustralia extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "لحكم الذاتي لولي عهد بريطيُعد الثّوم (الاسم العلمي: .Allium sativum L) أحدَ أنواع النباتات العشبيّة أُحاديّة الفلقة التي تنتمي الى جِنس الثّوم، وفصيلة الثّوميات، وهو نباتٌ بصليّ، ينمو في المُناخ المُعتدل، ويصل طوله الى 1.2 متر، وله عدّة أنواع، ويُعدُّ ثاني أكثر نوعٍ انتشاراً من جنس الثوم\nيّات (الاسم العلمي: Alliaceae) في جميع أنحاهعاهعل هعا هعا هعا هعا هعا هعلعغلغ علعغلعغيبلاتنيبلاتنسيبلاتنميبلاتنمييبلاتنميبلاتنمبلع ه هعهع هعاه هلاهعاه ء العالم،[١][٢] والطب، ويمتاز باحتة8",
-                              style: AppTypography.bodySmall.copyWith(
+                            Text("أستراليا بلدٌ يتمتع باستقرار وتنوع ثقافي واقتصاد من أقوى إقتصادات العالم. وهي الدولة الوحيدة بحجم قارة وأكبر جزيرة في العالم.\nو تقع استراليا بأكملها في نصف الكرة الجنوبي وتحيط بها البحار من جميع الجهات ويمر بوسطها مدار الجدي، وتحيط بها عدة جزر أهمها وأكبرها جزيرة تازمينيا في الجنوب الشرقي، ويفصل بينها وبين نيوزلندا في الجنوب الشرقي بحر تازمان.",
+                               style: AppTypography.bodySmall.copyWith(
                                   color: AppColors.neutrals[600],
                                   fontWeight: FontWeight.w500),
                             ),
@@ -158,7 +157,7 @@ class AboutAustralia extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              height: 46,
+                              height: 32,
                             ),
                           ],
                         ),
@@ -174,7 +173,7 @@ class AboutAustralia extends StatelessWidget {
                                     fontWeight: FontWeight.w500),
                               ),
                               SizedBox(
-                                height: 8,
+                                height: 6,
                               ),
                               SizedBox(
                                 height: 200,
