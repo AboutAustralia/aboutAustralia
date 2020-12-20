@@ -186,7 +186,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
                         child: Padding(
                       padding: const EdgeInsets.only(right: 50),
                       child: Text(
-                        "الأسئلة الشائعة",
+                        "عندك سؤال؟",
                         style: AppTypography.headerMedium.copyWith(
                           fontSize: 20,
                         ),
@@ -316,15 +316,17 @@ class _questionsAnswersState extends State<questionsAnswers> {
                             }
                           },
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Icon(
-                                Icons.add,
+                                FontAwesomeIcons.pen,
                                 color: Colors.white,
+                                size: 19,
                               ),
                               Expanded(
                                   child: Center(
                                 child: Text(
-                                  "عندك سؤال؟",
+                                  "اسألنا !",
                                   style: AppTypography.bodyNormal
                                       .copyWith(color: Colors.white),
                                 ),
@@ -370,6 +372,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
                         qid: allQuestions[index]['qID'].toString(),
                         questionText: allQuestions[index]['question'],
                         useful: allQuestions[index]['useful'],
+                        answerPreview: allQuestions[index]['answer'],
                       ),
                       childCount:
                           querySnapshot.hasData ? allQuestions.length : 0,
@@ -453,7 +456,9 @@ class QuestionCard extends StatelessWidget {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      qid,
+                      answerPreview != null
+                          ? answerPreview
+                          : "لم تتم الاجابة على هذا السؤال بعد",
                       style: AppTypography.answerPreview
                           .copyWith(color: AppColors.neutrals[600]),
                     )
@@ -467,9 +472,11 @@ class QuestionCard extends StatelessWidget {
               Expanded(
                   flex: 2,
                   child: Center(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Icon(Icons.thumb_up), Text(useful.toString())],
+                      child: FlatButton(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Icon(Icons.thumb_up), Text(useful.toString())],
+                    ),
                   )))
             ],
           ),
