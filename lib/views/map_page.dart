@@ -172,9 +172,6 @@ class MapPageState extends State<MapPage> {
         _zoomminusfunction(),
         _zoomplusfunction(),
         buildBottomContainer(),
-        RaisedButton(onPressed: () {
-          itemScrollController.jumpTo(index: 0);
-        }),
       ],
     );
   }
