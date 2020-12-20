@@ -85,7 +85,7 @@ class ImagePopupPage extends StatelessWidget {
                 children: [
                   Text(
                     cardInformationModel.article,
-                    style: AppTypography.bodyNormal.copyWith(
+                    style: AppTypography.bodyMedium.copyWith(
                         color: AppColors.neutrals[700],
                         fontWeight: FontWeight.w400),
                   )
