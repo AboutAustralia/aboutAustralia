@@ -88,24 +88,23 @@ class _questionsAnswersState extends State<questionsAnswers> {
             _logged_in = false;
             showDialog(
                 context: context,
-                builder: (_) =>
-                new AlertDialog(
-                  title: new Text("تم تسجيل خروجك بنجاح",
-                      style: AppTypography.bodyNormal
-                          .copyWith(color: AppColors.darkBlue)),
-                  actions: <Widget>[
-                    FlatButton(
-                      child: Text(
-                        'تم',
-                        style: AppTypography.bodyNormal
-                            .copyWith(color: AppColors.darkBlue),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    )
-                  ],
-                ));
+                builder: (_) => new AlertDialog(
+                      title: new Text("تم تسجيل خروجك بنجاح",
+                          style: AppTypography.bodyNormal
+                              .copyWith(color: AppColors.darkBlue)),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            'تم',
+                            style: AppTypography.bodyNormal
+                                .copyWith(color: AppColors.darkBlue),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        )
+                      ],
+                    ));
           });
       }
     });
@@ -185,14 +184,14 @@ class _questionsAnswersState extends State<questionsAnswers> {
                   children: [
                     Center(
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 50),
-                          child: Text(
-                            "عندك سؤال؟",
-                            style: AppTypography.headerMedium.copyWith(
-                              fontSize: 20,
-                            ),
-                          ),
-                        )),
+                      padding: const EdgeInsets.only(right: 50),
+                      child: Text(
+                        "عندك سؤال؟",
+                        style: AppTypography.headerMedium.copyWith(
+                          fontSize: 20,
+                        ),
+                      ),
+                    )),
                   ]),
               backgroundColor: AppColors.darkBlue,
               floating: false,
@@ -210,115 +209,110 @@ class _questionsAnswersState extends State<questionsAnswers> {
                     children: [
                       Container(
                         height: 40,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.6,
+                        width: MediaQuery.of(context).size.width * 0.6,
                         child: FlatButton(
                           onPressed: () {
                             read_token();
                             if (!_logged_in) {
                               showDialog(
                                   context: context,
-                                  builder: (_) =>
-                                  new AlertDialog(
-                                    title: new Text(
-                                        "يجب عليك تسجيل الدخول أولًا",
-                                        style: AppTypography.bodyNormal
-                                            .copyWith(
-                                            color: AppColors.darkBlue)),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              FontAwesomeIcons.google,
-                                              color: AppColors.darkBlue,
+                                  builder: (_) => new AlertDialog(
+                                        title: new Text(
+                                            "يجب عليك تسجيل الدخول أولًا",
+                                            style: AppTypography.bodyNormal
+                                                .copyWith(
+                                                    color: AppColors.darkBlue)),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  FontAwesomeIcons.google,
+                                                  color: AppColors.darkBlue,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text("تسجيل دخول",
+                                                    style: AppTypography
+                                                        .bodyMedium
+                                                        .copyWith(
+                                                            color: AppColors
+                                                                .darkBlue)),
+                                              ],
                                             ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Text("تسجيل دخول",
-                                                style: AppTypography
-                                                    .bodyMedium
-                                                    .copyWith(
-                                                    color: AppColors
-                                                        .darkBlue)),
-                                          ],
-                                        ),
-                                        onPressed: () {
-                                          _GooglesignIn();
-                                          Navigator.of(context).pop();
-                                        },
-                                      )
-                                    ],
-                                  ));
+                                            onPressed: () {
+                                              _GooglesignIn();
+                                              Navigator.of(context).pop();
+                                            },
+                                          )
+                                        ],
+                                      ));
                             } else {
                               showDialog(
                                   context: context,
-                                  builder: (_) =>
-                                  new AlertDialog(
-                                    title: Row(children: [
-                                      FaIcon(
-                                        FontAwesomeIcons.pen,
-                                        color: AppColors.darkBlue,
-                                        size: 20,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text("سؤال جديد",
-                                          style: AppTypography.bodyNormal
-                                              .copyWith(
-                                              color:
-                                              AppColors.darkBlue)),
-                                    ]),
-                                    content: TextField(
-                                      style: AppTypography.bodyMedium
-                                          .copyWith(
-                                          color: AppColors.darkBlue),
-                                      maxLines: null,
-                                      controller: ques,
-                                      decoration: InputDecoration(
-                                          focusedBorder:
-                                          UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: AppColors.darkBlue,
-                                                width: 1.0),
+                                  builder: (_) => new AlertDialog(
+                                        title: Row(children: [
+                                          FaIcon(
+                                            FontAwesomeIcons.pen,
+                                            color: AppColors.darkBlue,
+                                            size: 20,
                                           ),
-                                          hintText: 'اكتب سؤالك',
-                                          hintStyle: AppTypography
-                                              .bodyMedium
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text("سؤال جديد",
+                                              style: AppTypography.bodyNormal
+                                                  .copyWith(
+                                                      color:
+                                                          AppColors.darkBlue)),
+                                        ]),
+                                        content: TextField(
+                                          style: AppTypography.bodyMedium
                                               .copyWith(
-                                              color: Colors.grey[400])),
-                                    ),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Text("اسأل",
-                                            style: AppTypography.bodyMedium
-                                                .copyWith(
-                                                color: AppColors
-                                                    .darkBlue)),
-                                        onPressed: () {
-                                          String q = ques.text;
-                                          db.addQuestion(
-                                              q, _fAuth.currentUser.uid);
-                                          ques.clear();
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      FlatButton(
-                                        child: Text("الغاء",
-                                            style: AppTypography.bodyMedium
-                                                .copyWith(
-                                                color: AppColors
-                                                    .darkBlue)),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
-                                  ));
+                                                  color: AppColors.darkBlue),
+                                          maxLines: null,
+                                          controller: ques,
+                                          decoration: InputDecoration(
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: AppColors.darkBlue,
+                                                    width: 1.0),
+                                              ),
+                                              hintText: 'اكتب سؤالك',
+                                              hintStyle: AppTypography
+                                                  .bodyMedium
+                                                  .copyWith(
+                                                      color: Colors.grey[400])),
+                                        ),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                            child: Text("اسأل",
+                                                style: AppTypography.bodyMedium
+                                                    .copyWith(
+                                                        color: AppColors
+                                                            .darkBlue)),
+                                            onPressed: () {
+                                              String q = ques.text;
+                                              db.addQuestion(
+                                                  q, _fAuth.currentUser.uid);
+                                              ques.clear();
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                          FlatButton(
+                                            child: Text("الغاء",
+                                                style: AppTypography.bodyMedium
+                                                    .copyWith(
+                                                        color: AppColors
+                                                            .darkBlue)),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      ));
                             }
                           },
                           child: Row(
@@ -331,12 +325,12 @@ class _questionsAnswersState extends State<questionsAnswers> {
                               ),
                               Expanded(
                                   child: Center(
-                                    child: Text(
-                                      "اسألنا !",
-                                      style: AppTypography.bodyNormal
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                  ))
+                                child: Text(
+                                  "اسألنا !",
+                                  style: AppTypography.bodyNormal
+                                      .copyWith(color: Colors.white),
+                                ),
+                              ))
                             ],
                           ),
                           shape: RoundedRectangleBorder(
@@ -374,17 +368,16 @@ class _questionsAnswersState extends State<questionsAnswers> {
                   final allQuestions = querySnapshot.data.docs;
                   return SliverList(
                     delegate: SliverChildBuilderDelegate(
-                          (context, index) =>
-                          QuestionCard(
-                            qid: allQuestions[index]['qID'].toString(),
-                            questionText: allQuestions[index]['question'],
-                            useful: allQuestions[index]['useful'],
-                            answerPreview: allQuestions[index]['answer'],
-                            uid: allQuestions[index]['postedBy'],
-                            loggedin: _logged_in,
-                          ),
+                      (context, index) => QuestionCard(
+                        qid: allQuestions[index]['qID'].toString(),
+                        questionText: allQuestions[index]['question'],
+                        useful: allQuestions[index]['useful'],
+                        answerPreview: allQuestions[index]['answer'],
+                        uid: allQuestions[index]['postedBy'],
+                        loggedin: _logged_in,
+                      ),
                       childCount:
-                      querySnapshot.hasData ? allQuestions.length : 0,
+                          querySnapshot.hasData ? allQuestions.length : 0,
                     ),
                   );
                 }
@@ -416,16 +409,17 @@ class _questionsAnswersState extends State<questionsAnswers> {
 //                     return QuestionCard(qid: allQuestions[index]['qid'],);
 //                   }
 class QuestionCard extends StatefulWidget {
-  QuestionCard({Key key,
-    this.questionText,
-    this.answerPreview,
-    //this.askedBy,
-    this.useful,
-    //       this.photoUrl,
-    //       this.interested,
-    this.qid,
-    this.uid,
-    this.loggedin})
+  QuestionCard(
+      {Key key,
+      this.questionText,
+      this.answerPreview,
+      //this.askedBy,
+      this.useful,
+      //       this.photoUrl,
+      //       this.interested,
+      this.qid,
+      this.uid,
+      this.loggedin})
       : super(key: key);
   final loggedin;
   final String qid;
@@ -462,120 +456,137 @@ class _QuestionCardState extends State<QuestionCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(8, 8, 8, 20),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    child: ClipOval(
-                        child: userInfo == null
-                            ? Image.asset('assets/avatarph.png')
-                            : Image.network(userInfo['photoUrl'])),
+    return Stack(children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: AppColors.darkBlue),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 4,
+                    offset: Offset(0, 3), // changes position of shadow
                   ),
-                  SizedBox(width: 5),
-                  Expanded(
-                    flex: 11,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.questionText,
-                          style: AppTypography.bodyNormal
-                              .copyWith(fontSize: 14, height: 1.5),
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          widget.answerPreview != null
-                              ? widget.answerPreview
-                              : "لم تتم الاجابة على هذا السؤال بعد",
-                          style: AppTypography.answerPreview
-                              .copyWith(color: AppColors.neutrals[600]),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                  Divider(
-                    height: 1,
-                  ),
-                  Expanded(
-                      flex: 2,
-                      child: Center(
-                          child: FlatButton(
-                            onPressed: () {
-                              if (!widget.loggedin) {
-                                showDialog(
-                                    context: context,
-                                    builder: (_) =>
-                                    new AlertDialog(
-                                      title: new Text(
-                                          "يجب عليك تسجيل الدخول أولًا",
-                                          style: AppTypography.bodyNormal
-                                              .copyWith(
-                                              color: AppColors.darkBlue)),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: Text("تم",
-                                              style: AppTypography.bodyMedium
-                                                  .copyWith(
-                                                  color: AppColors.darkBlue)),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    ));
-                              } else {
-                                if (isLiked()) {
-                                  widget.useful.remove(
-                                      FirebaseAuth.instance.currentUser.uid);
-                                  FirebaseFirestore.instance.collection(
-                                      'questions').doc(widget.qid).update(
-                                      {'useful': widget.useful});
-                                }
-                                else {
-                                  widget.useful.add(FirebaseAuth.instance.currentUser.uid);
-                                  FirebaseFirestore.instance
-                                      .collection('questions')
-                                      .doc(widget.qid)
-                                      .update({
-                                      'useful': widget.useful
-                                });
-                              }
-                            }},
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.thumb_up,
-                                  color: isLiked()
-                                      ? AppColors.darkBlue
-                                      : AppColors.lightBlue,
-                                ),
-                                Text(
-                                  widget.useful.length.toString(),
-                                  style: AppTypography.bodyNormal.copyWith(
-                                      color: isLiked()
-                                          ? AppColors.darkBlue
-                                          : AppColors.lightBlue),
-                                )
-                              ],
+                ]),
+            padding: EdgeInsets.all(5),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(8, 8, 8, 20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 20,
+                        child: ClipOval(
+                            child: userInfo == null
+                                ? Image.asset('assets/avatarph.png')
+                                : Image.network(userInfo['photoUrl'])),
+                      ),
+                      SizedBox(width: 5),
+                      Expanded(
+                        flex: 11,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.questionText,
+                              style: AppTypography.bodyNormal
+                                  .copyWith(height: 1.5),
                             ),
-                          )))
-                ],
-              ),
+                            SizedBox(height: 5),
+                            Text(
+                              widget.answerPreview != null
+                                  ? widget.answerPreview
+                                  : "لم تتم الاجابة على هذا السؤال بعد",
+                              style: AppTypography.answerPreview
+                                  .copyWith(color: AppColors.neutrals[600], fontSize: 13),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 5),
+                    ],
+                  ),
+                ),
+              ],
+            )),
+      ),
+      Positioned(
+        left: 20,
+        bottom: 0,
+        child: SizedBox(
+          height: 30,
+          width: 50,
+          child: RaisedButton(
+            padding: EdgeInsets.all(0),
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+                side: BorderSide(color: AppColors.darkBlue)),
+            onPressed: () {
+              if (!widget.loggedin) {
+                showDialog(
+                    context: context,
+                    builder: (_) => new AlertDialog(
+                          title: new Text("يجب عليك تسجيل الدخول أولًا",
+                              style: AppTypography.bodyNormal
+                                  .copyWith(color: AppColors.darkBlue)),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text("تم",
+                                  style: AppTypography.bodyMedium
+                                      .copyWith(color: AppColors.darkBlue)),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            )
+                          ],
+                        ));
+              } else {
+                if (isLiked()) {
+                  widget.useful.remove(FirebaseAuth.instance.currentUser.uid);
+                  FirebaseFirestore.instance
+                      .collection('questions')
+                      .doc(widget.qid)
+                      .update({'useful': widget.useful});
+                } else {
+                  widget.useful.add(FirebaseAuth.instance.currentUser.uid);
+                  FirebaseFirestore.instance
+                      .collection('questions')
+                      .doc(widget.qid)
+                      .update({'useful': widget.useful});
+                }
+              }
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  widget.useful.length.toString(),
+                  style: AppTypography.bodyNormal.copyWith(
+                      color:
+                          isLiked() ? AppColors.darkBlue : AppColors.lightBlue),
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                Icon(
+                  Icons.thumb_up,
+                  color: isLiked() ? AppColors.darkBlue : AppColors.lightBlue,
+                  size: 15,
+                ),
+              ],
             ),
-            Divider(
-              height: 1,
-              thickness: 2,
-            )
-          ],
-        ));
+          ),
+        ),
+      )
+    ]);
   }
 }
