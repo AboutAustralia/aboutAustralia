@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class BottomNavigationBarController extends StatefulWidget {
   final int currentIndex;
-  BottomNavigationBarController({this.currentIndex = 0});
+  BottomNavigationBarController({this.currentIndex = 1});
   @override
   _BottomNavigationBarControllerState createState() =>
       _BottomNavigationBarControllerState();
