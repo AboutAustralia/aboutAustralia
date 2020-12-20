@@ -146,7 +146,6 @@ class _OnBoardingState extends State<OnBoarding> {
                               left: 5, right: 10, top: 10, bottom: 10),
                           child: Container(
                             height: 50,
-
                             child: Expanded(
                               flex: 6,
                               child: FlatButton(
@@ -331,9 +330,9 @@ class Slider extends StatelessWidget {
             Center(
               child: Column(
                 children: <Widget>[
-                  Icon(
-                    Icons.map,
-                    color: colour,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [],
                   ),
                   SizedBox(
                     height: 250,

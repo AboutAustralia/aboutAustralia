@@ -24,14 +24,14 @@ class _MapTabViewControllerState extends State<MapTabViewController> {
           length: 2,
           child: Scaffold(
             appBar: AppBar(
-              toolbarHeight: 60,
+              toolbarHeight: 50,
               title: Center(
                 child: Text(
                   "أهم المعالم السياحية في أستراليا",
                   style: AppTypography.headerMedium,
                 ),
               ),
-              backgroundColor: Colors.grey.withOpacity(0.5),
+              backgroundColor: AppColors.darkBlue,
               elevation: 0,
             ),
             body: Column(

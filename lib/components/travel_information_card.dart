@@ -72,7 +72,7 @@ class TravelInformationCard extends StatelessWidget {
                       style: AppTypography.bodyMedium.copyWith(
                           color: descriptionColor != null
                               ? descriptionColor
-                              : Colors.white,
+                              : AppColors.neutrals[600],
                           fontWeight: FontWeight.w400),
                     ),
                   )

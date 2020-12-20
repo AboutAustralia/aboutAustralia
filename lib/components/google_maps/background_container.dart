@@ -30,19 +30,7 @@ class BackgroundContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: includeAboutAustraliaAppbar
-          ? AppBar(
-              title: Align(
-                alignment: Alignment.center,
-                child: new Text(
-                  "أستراليا",
-                  style: AppTypography.headerMedium,
-                ),
-              ),
-              backgroundColor: Colors.transparent.withOpacity(0.3),
-              elevation: 0,
-            )
-          : null,
+      appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       body: SafeArea(
         child: Stack(children: [
