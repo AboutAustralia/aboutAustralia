@@ -165,6 +165,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
     super.initState();
     firebaseStream =
         FirebaseFirestore.instance.collection('questions').snapshots();
+
   }
 
   @override
@@ -346,7 +347,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
           StreamBuilder<QuerySnapshot>(
               stream: firebaseStream,
               builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> querySnapshot) {
+                  AsyncSnapshot<QuerySnapshot> querySnapshot) {print('BuildingStream');
                 if (querySnapshot.hasError) {
                   return SliverToBoxAdapter(
                     child: Center(
@@ -373,6 +374,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
                         questionText: allQuestions[index]['question'],
                         useful: allQuestions[index]['useful'],
                         answerPreview: allQuestions[index]['answer'],
+                        uid: allQuestions[index]['postedBy'],
                       ),
                       childCount:
                           querySnapshot.hasData ? allQuestions.length : 0,
@@ -406,7 +408,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
 //(context, index){
 //                     return QuestionCard(qid: allQuestions[index]['qid'],);
 //                   }
-class QuestionCard extends StatelessWidget {
+class QuestionCard extends StatefulWidget {
   QuestionCard(
       {Key key,
       this.questionText,
@@ -415,16 +417,32 @@ class QuestionCard extends StatelessWidget {
       this.useful,
       //       this.photoUrl,
       //       this.interested,
-      this.qid})
-      : super(key: key);
+      this.qid,
+      this.uid})
+      : super(key: key) {}
 
   final String qid;
+  final String uid;
   String questionText;
   String answerPreview;
-  String askedBy;
   int useful;
+
+  @override
+  _QuestionCardState createState() => _QuestionCardState();
+}
+
+class _QuestionCardState extends State<QuestionCard> {
+  Map userInfo;
+
+  String askedBy;
+
   String photoUrl;
-  int interested;
+
+  @override
+  void initState() {
+    super.initState();
+    FireStoreAPI().getUserInfo(widget.uid).then((value) => userInfo = value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -440,8 +458,9 @@ class QuestionCard extends StatelessWidget {
               CircleAvatar(
                 radius: 20,
                 child: ClipOval(
-                    child: Image.network(
-                        'https://www.w3schools.com/howto/img_avatar.png')),
+                    child: userInfo == null
+                        ? Image.asset('assets/avatarph.png')
+                        : Image.network(userInfo['photoUrl'])),
               ),
               SizedBox(width: 5),
               Expanded(
@@ -450,14 +469,14 @@ class QuestionCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      questionText,
+                      widget.questionText,
                       style: AppTypography.bodyNormal
                           .copyWith(fontSize: 14, height: 1.5),
                     ),
                     SizedBox(height: 5),
                     Text(
-                      answerPreview != null
-                          ? answerPreview
+                      widget.answerPreview != null
+                          ? widget.answerPreview
                           : "لم تتم الاجابة على هذا السؤال بعد",
                       style: AppTypography.answerPreview
                           .copyWith(color: AppColors.neutrals[600]),
@@ -473,9 +492,13 @@ class QuestionCard extends StatelessWidget {
                   flex: 2,
                   child: Center(
                       child: FlatButton(
+                    onPressed: () {},
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Icon(Icons.thumb_up), Text(useful.toString())],
+                      children: [
+                        Icon(Icons.thumb_up),
+                        Text(widget.useful.toString())
+                      ],
                     ),
                   )))
             ],
