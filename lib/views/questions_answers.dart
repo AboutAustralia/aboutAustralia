@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:about_australia/theme/app_colors.dart';
 import 'package:about_australia/theme/app_typography.dart';
-import 'package:flutter/services.dart';
-import 'dart:convert' as JSON;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -167,6 +165,8 @@ class _questionsAnswersState extends State<questionsAnswers> {
         FirebaseFirestore.instance.collection('questions').snapshots();
   }
 
+  bool answeredOnly = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -175,7 +175,19 @@ class _questionsAnswersState extends State<questionsAnswers> {
           // Add the app bar to the CustomScrollView.
           SliverAppBar(
               snap: false,
-              actions: [showLogin(context)],
+              actions: [
+                IconButton(
+                  icon: Icon(answeredOnly
+                      ? Icons.question_answer
+                      : Icons.question_answer_outlined),
+                  onPressed: () {
+                    setState(() {
+                      answeredOnly = !answeredOnly;
+                    });
+                  },
+                ),
+                showLogin(context)
+              ],
               title: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -358,6 +370,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
                     ),
                   );
                 }
+
                 if (querySnapshot.connectionState == ConnectionState.waiting) {
                   return SliverToBoxAdapter(
                     child: Center(
@@ -365,7 +378,11 @@ class _questionsAnswersState extends State<questionsAnswers> {
                     ),
                   );
                 } else {
-                  final allQuestions = querySnapshot.data.docs;
+                  List allQuestions = querySnapshot.data.docs;
+                  if (answeredOnly)
+                    allQuestions
+                        .removeWhere((element) => element['answer'] == null);
+
                   return SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) => QuestionCard(
@@ -377,7 +394,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
                         loggedin: _logged_in,
                       ),
                       childCount:
-                          querySnapshot.hasData ? allQuestions.length : 0,
+                          allQuestions.isNotEmpty ? allQuestions.length : 0,
                     ),
                   );
                 }
@@ -387,6 +404,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
     );
   }
 }
+
 
 //SliverList(
 //           // Use a delegate to build items as they're scrolled on screen.
@@ -454,6 +472,8 @@ class _QuestionCardState extends State<QuestionCard> {
       return false;
   }
 
+  Color borderColor = Color(0xff219ebc);
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -462,7 +482,7 @@ class _QuestionCardState extends State<QuestionCard> {
         child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColors.darkBlue),
+                border: Border.all(color: borderColor),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
@@ -504,8 +524,8 @@ class _QuestionCardState extends State<QuestionCard> {
                               widget.answerPreview != null
                                   ? widget.answerPreview
                                   : "لم تتم الاجابة على هذا السؤال بعد",
-                              style: AppTypography.answerPreview
-                                  .copyWith(color: AppColors.neutrals[600], fontSize: 13),
+                              style: AppTypography.answerPreview.copyWith(
+                                  color: AppColors.neutrals[600], fontSize: 14),
                             )
                           ],
                         ),
@@ -528,7 +548,7 @@ class _QuestionCardState extends State<QuestionCard> {
             color: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
-                side: BorderSide(color: AppColors.darkBlue)),
+                side: BorderSide(color: borderColor)),
             onPressed: () {
               if (!widget.loggedin) {
                 showDialog(
