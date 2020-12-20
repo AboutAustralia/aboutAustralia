@@ -405,7 +405,6 @@ class _questionsAnswersState extends State<questionsAnswers> {
   }
 }
 
-
 //SliverList(
 //           // Use a delegate to build items as they're scrolled on screen.
 //           delegate: SliverChildBuilderDelegate(
@@ -525,7 +524,10 @@ class _QuestionCardState extends State<QuestionCard> {
                                   ? widget.answerPreview
                                   : "لم تتم الاجابة على هذا السؤال بعد",
                               style: AppTypography.answerPreview.copyWith(
-                                  color: AppColors.neutrals[600], fontSize: 14),
+                                  color: widget.answerPreview == null
+                                      ? AppColors.neutrals[600]
+                                      : AppColors.neutrals[900],
+                                  fontSize: 14),
                             )
                           ],
                         ),
