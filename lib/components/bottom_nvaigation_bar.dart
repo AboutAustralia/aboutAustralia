@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatefulWidget {
-  BottomNavigation({this.currentIndex = 0, this.setCurrentIndex});
+  BottomNavigation({this.currentIndex = 1, this.setCurrentIndex});
   final int currentIndex;
   final Function setCurrentIndex;
   @override
@@ -24,8 +24,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
         ],
       ),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.11,
+        height: 70,
         child: BottomNavigationBar(
+
           unselectedItemColor: AppColors.aquaBlue,
           showSelectedLabels: true,
           selectedLabelStyle:
@@ -35,13 +36,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
           type: BottomNavigationBarType.fixed,
           backgroundColor: AppColors.darkBlue,
           selectedItemColor: Colors.white,
-          iconSize: 30,
-          selectedIconTheme: IconThemeData(size: 27),
+          iconSize: 32,
           items: [
-            BottomNavigationBarItem(
-              label: "الاسئلة",
-              icon: Icon(AustraliaIcons.conversation),
-            ),
+             BottomNavigationBarItem(
+               label: "الاسئلة",
+               icon: Icon(AustraliaIcons.conversation),
+             ),
             BottomNavigationBarItem(
               label: 'عن استراليا',
               icon: Icon(AustraliaIcons.flag_black),

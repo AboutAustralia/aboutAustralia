@@ -52,6 +52,7 @@ class _OnBoardingState extends State<OnBoarding> {
 
   //Google login
   //login proved us with username, imageurl, token and user id
+  // ignore: non_constant_identifier_names
   Future<User> _GooglesignIn() async {
     GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
@@ -67,9 +68,9 @@ class _OnBoardingState extends State<OnBoarding> {
     var photourl = googleuser.photoURL;
     var userid = googleSignInAccount.id;
     var token = gSA.accessToken;
-    db.addUser(displayname, photourl, userid, token);
+    var uid = _fAuth.currentUser.uid;
+    db.addUser(displayname, photourl, userid, token, uid);
     print(displayname);
-    store_user_detail(userid, photourl, displayname);
 
     store_token(token);
     read_token();
@@ -104,12 +105,6 @@ class _OnBoardingState extends State<OnBoarding> {
 
   Future store_token(String valid_token) async {
     await storage.write(key: 'valid_token', value: '$valid_token');
-  }
-
-  Future store_user_detail(String userid, userimage, username) async {
-    await storage.write(key: 'user-id', value: '$userid');
-    await storage.write(key: 'user-image', value: '$userimage');
-    await storage.write(key: 'user-name', value: '$username');
   }
 
   @override
@@ -154,7 +149,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             BottomNavigationBarController(
-                                                currentIndex: 0)),
+                                                currentIndex: 1)),
                                   );
                                 },
                                 shape: RoundedRectangleBorder(
@@ -169,21 +164,22 @@ class _OnBoardingState extends State<OnBoarding> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(16),
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 5, top: 10, bottom: 10),
                           child: Container(
                             height: 50,
                             child: Expanded(
                               flex: 4,
                               child: FlatButton(
                                 onPressed: () {
-                                  _GooglesignIn();
-                                  Navigator.pushReplacement(
+                                  _GooglesignIn().then((value) => Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             BottomNavigationBarController(
-                                                currentIndex: 0)),
-                                  );
+                                                currentIndex: 1)),
+                                  ));
+                                  
                                 },
                                 color: Colors.grey.withOpacity(0.4),
                                 shape: RoundedRectangleBorder(
@@ -328,9 +324,9 @@ class Slider extends StatelessWidget {
             Center(
               child: Column(
                 children: <Widget>[
-                  Icon(
-                    Icons.map,
-                    color: colour,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [],
                   ),
                   SizedBox(
                     height: 250,

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "263213588416",
+    "firebase_url": "https://aboutaustralia-24cc4-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "aboutaustralia-24cc4",
     "storage_bucket": "aboutaustralia-24cc4.appspot.com"
   },
@@ -14,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "263213588416-vtuutn1unouqcc1oca1cdcb2q33kl7ve.apps.googleusercontent.com",
+          "client_id": "263213588416-m2gaf2qn6eb1v1vmqfbql5hce80611ai.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.sawsanamer.about_australia",
-            "certificate_hash": "0327e8a1a1675efd3d5741e87f6d851da99878c8"
+            "certificate_hash": "29e727b67dc56d111eaf0899b06961ccd3ff174c"
           }
         },
         {

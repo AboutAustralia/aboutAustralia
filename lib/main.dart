@@ -20,9 +20,11 @@ void main() async {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   final FirebaseAuth _fAuth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: [
           GlobalCupertinoLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

@@ -6,7 +6,6 @@ import 'package:about_australia/components/about_australia_card.dart';
 import 'package:about_australia/components/card_model.dart';
 import 'package:about_australia/data.dart';
 import '../components/google_maps/background_container.dart';
-import '../components/google_maps/top_place_box.dart';
 import 'package:about_australia/views/list_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,8 +19,6 @@ class MapPage extends StatefulWidget {
 
 class MapPageState extends State<MapPage> {
   final ItemScrollController itemScrollController = ItemScrollController();
-  final ItemPositionsListener itemPositionsListener =
-      ItemPositionsListener.create();
 
   Completer<GoogleMapController> _controller = Completer();
   BitmapDescriptor customIcon;
@@ -63,31 +60,105 @@ class MapPageState extends State<MapPage> {
   Set<Marker> createMarkersList() {
     return <Marker>[
       Marker(
-          markerId: MarkerId('operaHouse'),
+          markerId: MarkerId('operaHousel'),
           position: LatLng(-33.85651709284762, 151.21539325698433),
+          infoWindow: InfoWindow(title: "دار أوبرا سيدني"),
           onTap: () {
-            itemScrollController.scrollTo(
-                index: 6,
-                duration: Duration(seconds: 1),
-                curve: Curves.easeInOutCubic);
+            print("A");
+            itemScrollController.jumpTo(
+              index: 0,
+            );
           },
-          infoWindow: InfoWindow(
-            title: "دار أوبرا سيدني",
-          ),
           icon: customIcon),
       Marker(
-          markerId: MarkerId('operaHouse'),
-          position: LatLng(-33.85651709284762, 151.21539325698433),
-          onTap: () {
-            itemScrollController.scrollTo(
-                index: 6,
-                duration: Duration(seconds: 1),
-                curve: Curves.easeInOutCubic);
-          },
-          infoWindow: InfoWindow(
-            title: "دار أوبرا سيدني",
-          ),
-          icon: customIcon)
+        markerId: MarkerId('operfafaHouse'),
+        infoWindow: InfoWindow(title: "الحاجز المرجاني العظيم"),
+        position: LatLng(-18.2871, 147.6992),
+        onTap: () {
+          print("afddddddddddd");
+
+          itemScrollController.jumpTo(index: 1);
+        },
+      ),
+      Marker(
+        markerId: MarkerId('faf1'),
+        position: LatLng(-25.3438, 131.0347),
+        infoWindow: InfoWindow(title: "حديقة أولورو كاتا تجوتا الوطنية"),
+        onTap: () {
+          itemScrollController.jumpTo(index: 2);
+        },
+      ),
+      Marker(
+        markerId: MarkerId('3'),
+        position: LatLng(-33.8523, 151.2108),
+        infoWindow: InfoWindow(title: "جسر ميناء سيدني"),
+        onTap: () {
+          itemScrollController.jumpTo(
+            index: 3,
+          );
+        },
+      ),
+      Marker(
+        markerId: MarkerId('4'),
+        infoWindow: InfoWindow(title: "حديقة الجبال الزرقاء الوطنية"),
+        position: LatLng(-33.6176, 150.4559),
+        onTap: () {
+          itemScrollController.jumpTo(
+            index: 4,
+          );
+        },
+      ),
+      Marker(
+        markerId: MarkerId('5'),
+        infoWindow: InfoWindow(title: "ملبورن"),
+        position: LatLng(-37.8136, 144.9631),
+        onTap: () {
+          itemScrollController.jumpTo(
+            index: 5,
+          );
+        },
+      ),
+      Marker(
+        markerId: MarkerId('6'),
+        infoWindow: InfoWindow(title: "شاطئ بوندي "),
+        position: LatLng(-33.8915, 151.2767),
+        onTap: () {
+          itemScrollController.jumpTo(
+            index: 6,
+          );
+        },
+      ),
+      Marker(
+        markerId: MarkerId('7'),
+        infoWindow: InfoWindow(title: "حديقة دينتري الوطنية"),
+        position: LatLng(-16.3014, 145.2480),
+        onTap: () {
+          itemScrollController.jumpTo(
+            index: 7,
+          );
+        },
+      ),
+      Marker(
+        markerId: MarkerId('8'),
+        infoWindow: InfoWindow(title: "جزيرة فريزر"),
+        position: LatLng(-25.2398, 153.1325),
+        onTap: () {
+          print("af");
+          itemScrollController.jumpTo(
+            index: 8,
+          );
+        },
+      ),
+      Marker(
+        markerId: MarkerId('9'),
+        infoWindow: InfoWindow(title: "حديقة كاكادو الوطنية"),
+        position: LatLng(-13.0923, 132.3938),
+        onTap: () {
+          itemScrollController.jumpTo(
+            index: 9,
+          );
+        },
+      ),
     ].toSet();
   }
 
@@ -95,15 +166,13 @@ class MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     // _createMarkerImageFromAsset(context);
-    return Expanded(
-      child: Stack(
-        children: <Widget>[
-          _buildGoogleMap(context),
-          _zoomminusfunction(),
-          _zoomplusfunction(),
-          buildBottomContainer(),
-        ],
-      ),
+    return Stack(
+      children: <Widget>[
+        _buildGoogleMap(context),
+        _zoomminusfunction(),
+        _zoomplusfunction(),
+        buildBottomContainer(),
+      ],
     );
   }
 
@@ -153,7 +222,6 @@ class MapPageState extends State<MapPage> {
           },
           scrollDirection: Axis.horizontal,
           itemScrollController: itemScrollController,
-          itemPositionsListener: itemPositionsListener,
         ),
         // child: ListView(
         //   scrollDirection: Axis.horizontal,

@@ -30,19 +30,7 @@ class BackgroundContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: includeAboutAustraliaAppbar
-          ? AppBar(
-              title: Align(
-                alignment: Alignment.center,
-                child: new Text(
-                  "أستراليا",
-                  style: AppTypography.headerMedium,
-                ),
-              ),
-              backgroundColor: Colors.transparent.withOpacity(0.3),
-              elevation: 0,
-            )
-          : null,
+      appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       body: SafeArea(
         child: Stack(children: [
@@ -58,12 +46,15 @@ class BackgroundContainer extends StatelessWidget {
                               : AssetImage(assetPath),
                           fit: BoxFit.cover,
                           alignment: Alignment.topCenter)),
-                  child: BackdropFilter(
-                      filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                      child: new Container(
-                        decoration: new BoxDecoration(
-                            color: Colors.white.withOpacity(0.0)),
-                      )),
+                  child: blurredBackground == true
+                      ? BackdropFilter(
+                          filter:
+                              new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                          child: new Container(
+                            decoration: new BoxDecoration(
+                                color: Colors.white.withOpacity(0.0)),
+                          ))
+                      : SizedBox(),
                 )
               : SizedBox(),
           linearGradient == null ? SizedBox() : linearGradient,

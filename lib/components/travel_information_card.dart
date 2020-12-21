@@ -46,7 +46,7 @@ class TravelInformationCard extends StatelessWidget {
                         color: AppColors.darkBlue,
                         borderRadius: BorderRadius.circular(16.0),
                         image: DecorationImage(
-                            image: NetworkImage(cardInformationModel.imageUrl),
+                            image: AssetImage(cardInformationModel.assetPath),
                             fit: BoxFit.cover,
                             alignment: Alignment.center)),
                     child: Column(
@@ -65,11 +65,14 @@ class TravelInformationCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Text(
-                      cardInformationModel.article.substring(0, 10) + "...",
+                      cardInformationModel.description == null
+                          ? cardInformationModel.article.substring(0, 100) +
+                              "..."
+                          : cardInformationModel.description,
                       style: AppTypography.bodyMedium.copyWith(
                           color: descriptionColor != null
                               ? descriptionColor
-                              : Colors.white,
+                              : AppColors.neutrals[600],
                           fontWeight: FontWeight.w400),
                     ),
                   )
