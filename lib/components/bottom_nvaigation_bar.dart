@@ -38,10 +38,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
           selectedItemColor: Colors.white,
           iconSize: 32,
           items: [
-            BottomNavigationBarItem(
-              label: "الاسئلة",
-              icon: Icon(AustraliaIcons.conversation),
-            ),
+             BottomNavigationBarItem(
+               label: "الاسئلة",
+               icon: Icon(AustraliaIcons.conversation),
+             ),
             BottomNavigationBarItem(
               label: 'عن استراليا',
               icon: Icon(AustraliaIcons.flag_black),

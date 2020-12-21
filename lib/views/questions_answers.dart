@@ -28,6 +28,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
   //Google login
   //login proved us with username, imageurl, token and user id
   Future<User> _GooglesignIn() async {
+
     GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
 
@@ -43,7 +44,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
     var userid = googleSignInAccount.id;
     var token = gSA.accessToken;
     var uid = _fAuth.currentUser.uid;
-    db.addUser(displayname, photourl, userid, token, uid);
+    await db.addUser(displayname, photourl, userid, token, uid);
     print(displayname);
 
     store_token(token);
@@ -63,10 +64,6 @@ class _questionsAnswersState extends State<questionsAnswers> {
     });
   }
 
-  void post_UserData(var userid, var username, var userimage) {
-    ref.child('user').child(userid).child('imageurl').set(userimage);
-    ref.child('user').child(userid).child('name').set(username);
-  }
 
   Future store_token(String valid_token) async {
     await storage.write(key: 'valid_token', value: '$valid_token');
@@ -255,7 +252,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
                                             ),
                                             onPressed: () {
                                               _GooglesignIn().then((value) => Navigator.of(context).pop());
-
+                                              
                                             },
                                           )
                                         ],
