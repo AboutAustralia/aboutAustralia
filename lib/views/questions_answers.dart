@@ -78,8 +78,8 @@ class _questionsAnswersState extends State<questionsAnswers> {
       switch (value) {
         case "googlesignin":
           print('google');
-          _GooglesignIn();
-          return;
+          _GooglesignIn().then((value) => {});
+          break;
         case "signout":
           setState(() {
             FirebaseAuth.instance.signOut();
@@ -254,8 +254,8 @@ class _questionsAnswersState extends State<questionsAnswers> {
                                               ],
                                             ),
                                             onPressed: () {
-                                              _GooglesignIn();
-                                              Navigator.of(context).pop();
+                                              _GooglesignIn().then((value) => Navigator.of(context).pop());
+
                                             },
                                           )
                                         ],
