@@ -80,6 +80,7 @@ class _questionsAnswersState extends State<questionsAnswers> {
         case "signout":
           setState(() {
             FirebaseAuth.instance.signOut();
+            store_token(null);
             _logged_in = false;
             showDialog(
                 context: context,
